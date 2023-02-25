@@ -8,7 +8,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Telegram_Bot
 {
-    class Program
+    class Program 
     {
         static void Main(string[] args)
         {
@@ -19,9 +19,8 @@ namespace Telegram_Bot
         async static Task Update(ITelegramBotClient botClient, Update update, CancellationToken token)
         {
             var message = update.Message;
-                switch (message.Text)
-                {
-                    case "/start":
+            if (message.Text == "/start")
+            {
                     var inlineKeyboard = new InlineKeyboardMarkup(new[]
                     {
                     new[]
@@ -35,14 +34,13 @@ namespace Telegram_Bot
                         " You can also get random advice at any time or offer your own option.", replyMarkup: inlineKeyboard);
                     Console.WriteLine($" First Name: {message.Chat.FirstName}\n Chat Id: {message.Chat.Id}\n Message: {message.Text}\n at {DateTime.Now}.");
                     Console.WriteLine();
-                        break;
-                    default:
-                        break;
+                    return;
             }
         }
+
         async static Task Error(ITelegramBotClient botClient, Exception exception, CancellationToken token)
         {
-
+            throw new NotImplementedException();
         }
     }
 }
