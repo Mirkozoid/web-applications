@@ -1,0 +1,5 @@
+C:\Users\User\Desktop\Proj\Labs\web-applications\Telegram_bot\Telegram_bot\obj\Debug\netcoreapp3.1\Telegram_bot.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Proj\Labs\web-applications\Telegram_bot\Telegram_bot\obj\Debug\netcoreapp3.1\Telegram_bot.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\Proj\Labs\web-applications\Telegram_bot\Telegram_bot\obj\Debug\netcoreapp3.1\Telegram_bot.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\Proj\Labs\web-applications\Telegram_bot\Telegram_bot\obj\Debug\netcoreapp3.1\Telegram_bot.AssemblyInfo.cs
+C:\Users\User\Desktop\Proj\Labs\web-applications\Telegram_bot\Telegram_bot\obj\Debug\netcoreapp3.1\Telegram_bot.csproj.CoreCompileInputs.cache
