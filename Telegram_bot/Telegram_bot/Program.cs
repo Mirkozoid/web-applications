@@ -12,38 +12,50 @@ namespace Telegram_Bot
     {
         static void Main(string[] args)
         {
-            var botClient = new TelegramBotClient("6104127558:AAF00d6Blwvz4DgCVWzf8usO-xPlR1Ehz2U");;
+            var botClient = new TelegramBotClient("5104127558:AAF00d6Blwvz4DgCVWzf8usO-xPlR1Ehz2U");
             botClient.StartReceiving(Update, Error);
             Console.ReadLine();
         }
-        //private async static void BotOnCallBackQueryReceived(ITelegramBotClient botClient, Telegram.Bot.Args.CallbackQueryEventArgs inlineKeyboard)
-        //{
-        //    string selectedOption = inlineKeyboard.CallbackQuery.Data;
-        //    await botClient.AnswerCallbackQueryAsync(inlineKeyboard.CallbackQuery.Id, $"{selectedOption}");
-        //}
+        private async static void BotOnCallBackQueryReceived(ITelegramBotClient botClient, Update inlineKeyboard)
+        {
+            await botClient.AnswerCallbackQueryAsync(inlineKeyboard.CallbackQuery.Id, $"{inlineKeyboard}");
+        }
         async static Task Update(ITelegramBotClient botClient, Update update, CancellationToken token)
         {
             var message = update.Message;
-            switch (message.Text)
+            if(message.Text != null)
             {
-                case "/start":
-                 var inlineKeyboard = new InlineKeyboardMarkup(new[]
-                 {
-                    new[]
+                
+                 var firstButton = new InlineKeyboardButton("Include tips");
+                 firstButton.CallbackData = "Include tips";
+                 var secondButton = new InlineKeyboardButton("No thanks");
+                 secondButton.CallbackData = "No thanks";
+                    var inlineKeyboard = new InlineKeyboardMarkup(new[]
                     {
-                       InlineKeyboardButton.WithCallbackData("Include tips"),
-                       InlineKeyboardButton.WithCallbackData("No thanks")
-                    }
-                 });
+                      new[]
+                      {
+                       firstButton,
+                       secondButton
+                      }
+                    });
                 await botClient.SendTextMessageAsync(message.Chat.Id, "Hello, I am your financial controller, " +
                     "every day at 12 o'clock in the afternoon I will send you a little advice on how to dispose of free money." +
                     " You can also get random advice at any time or offer your own option.", replyMarkup: inlineKeyboard);
                 Console.WriteLine($" First Name: {message.Chat.FirstName}\n Chat Id: {message.Chat.Id}\n Message: {message.Text}\n at {DateTime.Now}.");
                 Console.WriteLine();
-                    break;
-                default:
-                    break;
-            }                            
+                switch (message.Text)
+                {
+                    case "Include tips":
+                        await botClient.SendTextMessageAsync(message.Chat.Id, $"{firstButton}");
+                        break;
+                    case "No thanks":
+                        await botClient.SendTextMessageAsync(message.Chat.Id, "2");
+                        break;
+                    default:
+                        break;
+                }
+                    
+            }
         }
         async static Task Error(ITelegramBotClient arg1, Exception arg2, CancellationToken arg3)
         {
