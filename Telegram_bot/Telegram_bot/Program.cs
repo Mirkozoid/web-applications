@@ -12,7 +12,7 @@ namespace Telegram_Bot
     {
         static void Main(string[] args)
         {
-            var botClient = new TelegramBotClient("6104127558:AAF00d6Blwvz4DgCVWzf8usO-xPlR1Ehz2U"); ;
+            var botClient = new TelegramBotClient("6104127558:AAF00d6Blwvz4DgCVWzf8usO-xPlR1Ehz2U");
             botClient.StartReceiving(Update, Error);
             Console.ReadLine();
         }
