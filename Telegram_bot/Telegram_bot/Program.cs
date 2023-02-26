@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
+using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 
@@ -18,7 +19,9 @@ namespace Telegram_Bot
         }
         async static Task Update(ITelegramBotClient botClient, Update update, CancellationToken token)
         {
-            var message = update.Message;           
+            var message = update.Message;
+            if (message != null)
+            {
             switch (message.Text)
             {
                 case "/start":
@@ -71,9 +74,14 @@ namespace Telegram_Bot
                     Console.WriteLine();
                     break;
             }          
+            }
+            else
+            {
+                return;
+            }
         }
         async static Task Error(ITelegramBotClient botClient, Exception exception, CancellationToken token)
-        {
+        { 
         }
     }
 }
