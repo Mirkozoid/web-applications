@@ -74,7 +74,6 @@ namespace Telegram_Bot
         }
         async static Task Error(ITelegramBotClient botClient, Exception exception, CancellationToken token)
         {
-            throw new NotImplementedException();
         }
     }
 }
