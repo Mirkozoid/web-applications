@@ -36,21 +36,10 @@ namespace Telegram_Bot
                     "every day at 12 o'clock in the afternoon I will send you a little advice on how to dispose of free money." +
                     " You can also get random advice at any time or offer your own option.", replyMarkup: inlineKeyboard);
                 Console.WriteLine($" First Name: {message.Chat.FirstName}\n Chat Id: {message.Chat.Id}\n Message: {message.Text}\n at {DateTime.Now}.");
-                //switch(buttonFirst)
-                //{
-                //    case buttonSecond.CallbackData:
-                //        break;
-                //    case "CallBackSecond":
-                //        break;
-                //    default:
-                //        break;
-                //}
-
                 Console.WriteLine();
                 return;
             }
         }
-
         async static Task Error(ITelegramBotClient botClient, Exception exception, CancellationToken token)
         {
             throw new NotImplementedException();
