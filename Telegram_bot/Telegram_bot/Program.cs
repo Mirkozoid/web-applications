@@ -7,6 +7,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 using HtmlAgilityPack;
 using System.Text;
 using System.Collections;
+using PRS;
 
 namespace Telegram_Bot
 {
@@ -16,11 +17,10 @@ namespace Telegram_Bot
         {
             var botClient = new TelegramBotClient("6104127558:AAF00d6Blwvz4DgCVWzf8usO-xPlR1Ehz2U");
             botClient.StartReceiving(Update, Error);
-            Program HTMLprs = new Program();
             Console.ReadLine();
         }
         async static Task Update(ITelegramBotClient botClient, Update update, CancellationToken token)
-        {
+        {       
             var message = update.Message;
             if (message != null)
             {
@@ -65,51 +65,7 @@ namespace Telegram_Bot
                     Console.WriteLine();
                     break;
                 case "Get random news.":
-                        HtmlWeb ws = new HtmlWeb();
-                        ws.OverrideEncoding = Encoding.UTF8;
-                        var url = "https://www.e1.ru/";
-                        var mainLink = "//div[contains(@class,'GAACw')]//a[@href]";
-                        var headings = "//div[contains(@class,'jsL2X')]//span";
-                        var news = "//div[contains(@class,'qQq9J')]//p";
-                        var time = "//div[contains(@class,'zhFxW')]//a";
-                        HtmlDocument document = ws.Load(url);
-                        ArrayList linkList = new ArrayList();
-                        string bodyHeadingsNews = "";
-                        string bodyNews = "";
-                        string bodyTimeNews = "";
-                        int NumberOfNews = 0;
-                        foreach (HtmlNode node in document.DocumentNode.SelectNodes(mainLink))
-                        {
-                            NumberOfNews++;
-                            linkList.Add(url + node.GetAttributeValue("href", null));
-                            if (NumberOfNews == 1) break;
-                        }
-                        foreach (string text in linkList)
-                        {
-                            if (text.Contains("https://www.e1.ru/https://www.e1.ru/text/longread/")) continue;
-                            Thread.Sleep(500);
-                            document = ws.Load(text);
-                            //Headings
-                            foreach (HtmlNode link in document.DocumentNode.SelectNodes(headings))
-                            {
-                                bodyHeadingsNews = link.InnerText;
-                            }
-                            //News
-                            foreach (HtmlNode link in document.DocumentNode.SelectNodes(news))
-                            {
-                                bodyNews = link.InnerText;
-                                break;
-                            }
-                            //Time
-                            foreach (HtmlNode link in document.DocumentNode.SelectNodes(time))
-                            {                                
-                                bodyTimeNews = link.InnerText;
-                            }
-                            Console.WriteLine();
-                            await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: bodyHeadingsNews + "\n\n" + bodyNews +
-                            "\nЧитать продолжение:" + "\n" + text,
-                            cancellationToken: token);
-                        }
+                    HTMLparsing.HTMLpars(botClient,message,token);
                         break;
                 case "Stop working.":
                     await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: "We will be waiting for you, " +
