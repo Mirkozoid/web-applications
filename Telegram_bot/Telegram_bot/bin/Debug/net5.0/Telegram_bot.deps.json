@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v5.0": {
       "Telegram_bot/1.0.0": {
         "dependencies": {
-          "HtmlAgilityPack.NetCore": "1.5.0.1",
+          "HtmlAgilityPack": "1.11.46",
           "Telegram.Bot": "18.0.0",
           "Telegram.Bot.Framework": "1.1.4"
         },
@@ -16,22 +16,11 @@
           "Telegram_bot.dll": {}
         }
       },
-      "HtmlAgilityPack.NetCore/1.5.0.1": {
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Diagnostics.Debug": "4.3.0",
-          "System.Linq": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Runtime.InteropServices": "4.3.0",
-          "System.Text.RegularExpressions": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Xml.XPath": "4.0.1"
-        },
+      "HtmlAgilityPack/1.11.46": {
         "runtime": {
-          "lib/netstandard1.3/HtmlAgilityPack.NetCore.dll": {
-            "assemblyVersion": "1.5.0.1",
-            "fileVersion": "1.5.0.1"
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {
+            "assemblyVersion": "1.11.46.0",
+            "fileVersion": "1.11.46.0"
           }
         }
       },
@@ -995,19 +984,6 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
-      "System.Xml.XPath/4.0.1": {
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Diagnostics.Debug": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Xml.ReaderWriter": "4.3.0"
-        }
-      },
       "Telegram.Bot/18.0.0": {
         "dependencies": {
           "Newtonsoft.Json": "12.0.2"
@@ -1052,12 +1028,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "HtmlAgilityPack.NetCore/1.5.0.1": {
+    "HtmlAgilityPack/1.11.46": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-UaLQtf8QMM1cxUDPMMBcrgX3A/56P+y4mHidgWaoiieaEG9eyODVRIKt6cQtBZaHLOVX3abGdMGVk2RnlWUAOw==",
-      "path": "htmlagilitypack.netcore/1.5.0.1",
-      "hashPath": "htmlagilitypack.netcore.1.5.0.1.nupkg.sha512"
+      "sha512": "sha512-dLMn4EVfJBHWmWK4Uh0XGD76FPLHI0qr2Tm0s1m/xmgiHb1JUb9zB8AzO8HtrkBBlMN6JfCUBYddhqC0hZNR+g==",
+      "path": "htmlagilitypack/1.11.46",
+      "hashPath": "htmlagilitypack.1.11.46.nupkg.sha512"
     },
     "Microsoft.AspNetCore.DataProtection.Abstractions/1.1.2": {
       "type": "package",
@@ -1751,13 +1727,6 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
-    },
-    "System.Xml.XPath/4.0.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-UWd1H+1IJ9Wlq5nognZ/XJdyj8qPE4XufBUkAW59ijsCPjZkZe0MUzKKJFBr+ZWBe5Wq1u1d5f2CYgE93uH7DA==",
-      "path": "system.xml.xpath/4.0.1",
-      "hashPath": "system.xml.xpath.4.0.1.nupkg.sha512"
     },
     "Telegram.Bot/18.0.0": {
       "type": "package",
