@@ -8,7 +8,19 @@ namespace PRS
 {
     class HTMLprs
     {
-        static void HTMLpars()
+        public Action doAfter { get { return DoAfter; } set { DoAfter = value; } }
+        private Action DoAfter;
+
+        public void doSomething()
+        {
+            doafter();
+        }
+
+        private void doafter()
+        {
+            DoAfter();
+        }
+        public static void HTMLpars()
         {
             HtmlWeb ws = new HtmlWeb();
             ws.OverrideEncoding = Encoding.UTF8;
