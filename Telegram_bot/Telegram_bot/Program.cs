@@ -36,7 +36,7 @@ namespace Telegram_Bot
                            new KeyboardButton[] { "Subscribe to the news.", "No thanks." },
                         })
                         {
-                        ResizeKeyboard = true
+                         ResizeKeyboard = true
                         };
                     await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: "Would you like to continue ?",
                     replyMarkup: replyKeyboardMarkup,cancellationToken: token);

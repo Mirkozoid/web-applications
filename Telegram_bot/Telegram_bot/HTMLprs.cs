@@ -26,31 +26,29 @@ namespace PRS
             foreach (HtmlNode node in document.DocumentNode.SelectNodes(mainLink))
             {
                 NumberOfNews++;
+                Console.WriteLine(NumberOfNews);
                 linkList.Add(url + node.GetAttributeValue("href", null));
-                if (NumberOfNews == 10) break;
+                if (NumberOfNews == 20) break;
             }
             foreach (string text in linkList)
             {
                 if (text.Contains("https://www.e1.ru/https://www.e1.ru/text/longread/")) continue;
-                string linkText = text;
-                Thread.Sleep(500);
                 document = ws.Load(text);
                 //Headings
                 foreach (HtmlNode link in document.DocumentNode.SelectNodes(headings))
                 {
-                    bodyHeadingsNews = link.InnerText;                    
+                    bodyHeadingsNews = link.InnerText;
                 }
                 //News
                 foreach (HtmlNode link in document.DocumentNode.SelectNodes(news))
                 {
                     bodyNews = link.InnerText;
                     break;
-                }              
+                }
                 Console.WriteLine();
                 await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: bodyHeadingsNews + "\n\n" + bodyNews +
-                "\nЧитать продолжение:" + "\n" + text,
-                cancellationToken: token);
-               
+                "\nЧитать продолжение:" + "\n" + text, cancellationToken: token);
+                return;
             }
         }
     }
