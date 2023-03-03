@@ -1,9 +1,5 @@
-﻿using System;
+﻿using HtmlAgilityPack;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Varible
 {
@@ -16,6 +12,7 @@ namespace Varible
         public static string Url = "https://www.e1.ru/";
         public static string Headings = "//div[contains(@class,'jsL2X')]//span";
         public static string News = "//div[contains(@class,'qQq9J')]//p";
-        public static ArrayList LinkList;
+        public static ArrayList LinkList = new ArrayList();
+        public static HtmlWeb Ws = new HtmlWeb();
     }
 }

@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Varible;
 
 namespace IDLinks
 {
-    class DictionaryLinksNews
+    class DictionaryLinksNews : Variables
     {
-        //public static List<string> idLinks()
-        //{
+        public static void IDIselection()
+        {
 
-        //    return;
-        //}
+        }
+
     }
 }

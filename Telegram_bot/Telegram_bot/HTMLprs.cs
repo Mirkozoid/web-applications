@@ -12,16 +12,15 @@ namespace PRS
         {
             Ws.OverrideEncoding = Encoding.UTF8;
             HtmlDocument document = Ws.Load(Url);
-            ArrayList linkList = new ArrayList();
             int NumberOfNews = 0;
             foreach (HtmlNode node in document.DocumentNode.SelectNodes(MainLink))
             {
                 NumberOfNews++;
                 Console.WriteLine(NumberOfNews);
-                linkList.Add(Url + node.GetAttributeValue("href", null));
+                LinkList.Add(Url + node.GetAttributeValue("href", null));
                 if (NumberOfNews == 20) break;
             }
-            foreach (string text in linkList)
+            foreach (string text in LinkList)
             {
                 Links = text;
                 if (text.Contains("https://www.e1.ru/https://www.e1.ru/text/longread/")) continue;
