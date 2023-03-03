@@ -3,16 +3,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
-using Telegram.Bot.Types.ReplyMarkups;
 using PRS;
 using Varible;
 using IDLinks;
+using SendingMessages;
+using KeyBoards;
 
 namespace Telegram_Bot
 {
     class Program : Variables
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var botClient = new TelegramBotClient("6104127558:AAF00d6Blwvz4DgCVWzf8usO-xPlR1Ehz2U");
             DictionaryLinksNews.IDIselection();
@@ -27,58 +28,32 @@ namespace Telegram_Bot
                switch (message.Text)
                {
                 case "/start":
-                    ReplyKeyboardMarkup replyKeyboardMarkup = 
-                        new(new[]
-                        {
-                           new KeyboardButton[] { "Subscribe to the news.", "No thanks." },
-                        })
-                        {
-                         ResizeKeyboard = true
-                        };
-                    await botClient.SendTextMessageAsync(message.Chat.Id, GreetingsText, replyMarkup: 
-                    replyKeyboardMarkup, cancellationToken: token);
-                    InformationOutput(message);
+                    KeyBoard.ReplyKeyBoardMarkup();
+                    SendingMessage.Greetings(botClient, message, token, replyKeyboardMarkup);
+                    SendingMessage.InformationOutput(message);
                     Console.WriteLine();                
                     break;
                 case "Subscribe to the news.":
-                    ReplyKeyboardMarkup replyKeyboardMarkupforInclude =
-                        new(new[]
-                        {
-                           new KeyboardButton[] { "Get random news.","Stop working." },
-                        })
-                        {
-                            ResizeKeyboard = true
-                        };
-                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: SubscribeNewsText, 
-                    replyMarkup: replyKeyboardMarkupforInclude,cancellationToken: token);
+                    KeyBoard.ReplyKeyBoardMarkupforInclude();
+                    SendingMessage.SubscribeNews(botClient, message, token, replyKeyboardMarkupforInclude);
                     break;
                 case "No thanks.":
-                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: FarewellText, 
-                    replyMarkup: new ReplyKeyboardRemove(),
-                    cancellationToken: token);
-                    InformationOutput(message);
+                    SendingMessage.Farewell(botClient, message, token);
+                    SendingMessage.InformationOutput(message);
                     Console.WriteLine();
                     break;
                 case "Get random news.":
                     HTMLparsing.HTMLpars();
-                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: BodyHeadingsNews + 
-                    "\n\n" + BodyNews +"\nЧитать продолжение:" + "\n" + Links, cancellationToken: token);
-                        break;
+                    SendingMessage.RandomNews(botClient, message, token);
+                    break;
                 case "Stop working.":
-                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: StoppingWork,
-                    replyMarkup: new ReplyKeyboardRemove(),
-                    cancellationToken: token);
-                    InformationOutput(message);
+                    SendingMessage.StoppingWork(botClient, message, token);
+                    SendingMessage.InformationOutput(message);
                     Console.WriteLine();
                     break;
                }          
             }
         }
         async static Task Error(ITelegramBotClient botClient, Exception exception, CancellationToken token) { }
-        public static void InformationOutput(Message message)
-        {
-            Console.WriteLine($" First Name: {message.Chat.FirstName}.\n Chat Id: {message.Chat.Id}.\n Message: " +
-            $"{message.Text}.\n at {DateTime.Now}.");
-        }
     }
 }

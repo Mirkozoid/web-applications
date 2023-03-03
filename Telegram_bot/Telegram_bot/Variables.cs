@@ -1,5 +1,6 @@
 ﻿using HtmlAgilityPack;
 using System.Collections;
+using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Varible
 {
@@ -16,12 +17,14 @@ namespace Varible
         " exchanges, stocks and economics.\n\nWhat do you want ?";
         public static string FarewellText = "We will be waiting for you, " +
         "click /start if you want to start again.";
-        public static string StoppingWork = "We will be waiting for you, " +
+        public static string StoppingWorkText = "We will be waiting for you, " +
         "click /start if you want to start again.";
         public static string MainLink = "//div[contains(@class,'GAACw')]//a[@href]";
         public static string Url = "https://www.e1.ru/";
         public static string Headings = "//div[contains(@class,'jsL2X')]//span";
         public static string News = "//div[contains(@class,'qQq9J')]//p";
+        public static ReplyKeyboardMarkup replyKeyboardMarkup;
+        public static ReplyKeyboardMarkup replyKeyboardMarkupforInclude;
         public static ArrayList LinkList = new ArrayList();
         public static HtmlWeb Ws = new HtmlWeb();
         public static HtmlDocument Document = Ws.Load(Url);
