@@ -14,5 +14,6 @@ namespace Varible
         public static string News = "//div[contains(@class,'qQq9J')]//p";
         public static ArrayList LinkList = new ArrayList();
         public static HtmlWeb Ws = new HtmlWeb();
+        public static HtmlDocument Document = Ws.Load(Url);
     }
 }

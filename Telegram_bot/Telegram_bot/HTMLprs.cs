@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using IDLinks;
 using System;
 using System.Collections;
 using System.Text;
@@ -11,32 +12,25 @@ namespace PRS
         public static void HTMLpars()
         {
             Ws.OverrideEncoding = Encoding.UTF8;
-            HtmlDocument document = Ws.Load(Url);
-            int NumberOfNews = 0;
-            foreach (HtmlNode node in document.DocumentNode.SelectNodes(MainLink))
-            {
-                NumberOfNews++;
-                Console.WriteLine(NumberOfNews);
-                LinkList.Add(Url + node.GetAttributeValue("href", null));
-                if (NumberOfNews == 20) break;
-            }
             foreach (string text in LinkList)
             {
                 Links = text;
                 if (text.Contains("https://www.e1.ru/https://www.e1.ru/text/longread/")) continue;
-                document = Ws.Load(text);
+                Document = Ws.Load(text);
                 //Headings
-                foreach (HtmlNode link in document.DocumentNode.SelectNodes(Headings))
+                foreach (HtmlNode link in Document.DocumentNode.SelectNodes(Headings))
                 {
                     BodyHeadingsNews = link.InnerText;
                 }
                 //News
-                foreach (HtmlNode link in document.DocumentNode.SelectNodes(News))
+                foreach (HtmlNode link in Document.DocumentNode.SelectNodes(News))
                 {
                     BodyNews = link.InnerText;
                     break;
                 }
                 Console.WriteLine();
+                LinkList.RemoveAt(0);
+                if(LinkList.Count == 1) DictionaryLinksNews.IDIselection();
                 return;
             }
         }

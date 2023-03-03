@@ -6,6 +6,7 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using PRS;
 using Varible;
+using IDLinks;
 
 namespace Telegram_Bot
 {
@@ -14,11 +15,12 @@ namespace Telegram_Bot
         static void Main(string[] args)
         {
             var botClient = new TelegramBotClient("6104127558:AAF00d6Blwvz4DgCVWzf8usO-xPlR1Ehz2U");
+            DictionaryLinksNews.IDIselection();
             botClient.StartReceiving(Update, Error);
             Console.ReadLine();
         }
         async static Task Update(ITelegramBotClient botClient, Update update, CancellationToken token)
-        {       
+        {
             var message = update.Message;
             if (message != null)
             {
