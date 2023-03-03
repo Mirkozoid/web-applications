@@ -13,7 +13,7 @@ namespace Telegram_Bot
 {
     class Program : Variables
     {
-        private static void Main(string[] args)
+        static void Main(string[] args)
         {
             var botClient = new TelegramBotClient("6104127558:AAF00d6Blwvz4DgCVWzf8usO-xPlR1Ehz2U");
             DictionaryLinksNews.IDIselection();
