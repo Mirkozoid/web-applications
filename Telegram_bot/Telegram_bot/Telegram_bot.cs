@@ -4,14 +4,12 @@ using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
-using HtmlAgilityPack;
-using System.Text;
-using System.Collections;
 using PRS;
+using Varible;
 
 namespace Telegram_Bot
 {
-    class Program
+    class Program : Variables
     {
         static void Main(string[] args)
         {
@@ -40,7 +38,8 @@ namespace Telegram_Bot
                         };
                     await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: "Would you like to continue ?",
                     replyMarkup: replyKeyboardMarkup,cancellationToken: token);
-                    Console.WriteLine($" First Name: {message.Chat.FirstName}.\n Chat Id: {message.Chat.Id}.\n Message: {message.Text}.\n at {DateTime.Now}.");
+                    Console.WriteLine($" First Name: {message.Chat.FirstName}.\n Chat Id: {message.Chat.Id}.\n Message: " +
+                    $"{message.Text}.\n at {DateTime.Now}.");
                     Console.WriteLine();                
                     break;
                 case "Subscribe to the news.":
@@ -52,8 +51,9 @@ namespace Telegram_Bot
                         {
                             ResizeKeyboard = true
                         };
-                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: "You have successfully subscribed. Every day at 10:00," +
-                    " 15:00 and 20:00 you will receive news from the world of exchanges, stocks and economics.\n\nWhat do you want ?",
+                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: "You have successfully subscribed. " +
+                    "Every day at 10:00," +" 15:00 and 20:00 you will receive news from the world of exchanges, stocks and economics." +
+                    "\n\nWhat do you want ?",
                     replyMarkup: replyKeyboardMarkupforInclude,
                     cancellationToken: token);
                     break;
@@ -61,24 +61,26 @@ namespace Telegram_Bot
                     await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: "We will be waiting for you, " +
                     "click /start if you want to start again.", replyMarkup: new ReplyKeyboardRemove(),
                     cancellationToken: token);                    
-                    Console.WriteLine($" First Name: {message.Chat.FirstName}.\n Chat Id: {message.Chat.Id}.\n Message: {message.Text}.\n at {DateTime.Now}.");
+                    Console.WriteLine($" First Name: {message.Chat.FirstName}.\n Chat Id: {message.Chat.Id}.\n Message: " +
+                    $"{message.Text}.\n at {DateTime.Now}.");
                     Console.WriteLine();
                     break;
                 case "Get random news.":
-                    HTMLparsing.HTMLpars(botClient,message,token);
+                    HTMLparsing.HTMLpars();
+                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: BodyHeadingsNews + "\n\n" + BodyNews +
+                    "\nЧитать продолжение:" + "\n" + Links, cancellationToken: token);
                         break;
                 case "Stop working.":
                     await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: "We will be waiting for you, " +
                     "click /start if you want to start again.", replyMarkup: new ReplyKeyboardRemove(),
                     cancellationToken: token);
-                    Console.WriteLine($" First Name: {message.Chat.FirstName}.\n Chat Id: {message.Chat.Id}.\n Message: {message.Text}.\n at {DateTime.Now}.");
+                    Console.WriteLine($" First Name: {message.Chat.FirstName}.\n Chat Id: {message.Chat.Id}.\n Message: " +
+                    $"{message.Text}.\n at {DateTime.Now}.");
                     Console.WriteLine();
                     break;
                }          
             }
         }
-        async static Task Error(ITelegramBotClient botClient, Exception exception, CancellationToken token)
-        { 
-        }
+        async static Task Error(ITelegramBotClient botClient, Exception exception, CancellationToken token) { }    
     }
 }

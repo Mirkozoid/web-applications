@@ -2,52 +2,42 @@
 using System;
 using System.Collections;
 using System.Text;
-using System.Threading;
-using Telegram.Bot;
-using Telegram.Bot.Types;
+using Varible;
 
 namespace PRS
 {
-    class HTMLparsing
+    class HTMLparsing : Variables
     {
-        public async static void HTMLpars(ITelegramBotClient botClient, Message message, CancellationToken token)
+        public static void HTMLpars()
         {
-            HtmlWeb ws = new HtmlWeb();
-            ws.OverrideEncoding = Encoding.UTF8;
-            var url = "https://www.e1.ru/";
-            var mainLink = "//div[contains(@class,'GAACw')]//a[@href]";
-            var headings = "//div[contains(@class,'jsL2X')]//span";
-            var news = "//div[contains(@class,'qQq9J')]//p";
-            HtmlDocument document = ws.Load(url);
+            Ws.OverrideEncoding = Encoding.UTF8;
+            HtmlDocument document = Ws.Load(Url);
             ArrayList linkList = new ArrayList();
-            string bodyHeadingsNews = "";
-            string bodyNews = "";
             int NumberOfNews = 0;
-            foreach (HtmlNode node in document.DocumentNode.SelectNodes(mainLink))
+            foreach (HtmlNode node in document.DocumentNode.SelectNodes(MainLink))
             {
                 NumberOfNews++;
                 Console.WriteLine(NumberOfNews);
-                linkList.Add(url + node.GetAttributeValue("href", null));
+                linkList.Add(Url + node.GetAttributeValue("href", null));
                 if (NumberOfNews == 20) break;
             }
             foreach (string text in linkList)
             {
+                Links = text;
                 if (text.Contains("https://www.e1.ru/https://www.e1.ru/text/longread/")) continue;
-                document = ws.Load(text);
+                document = Ws.Load(text);
                 //Headings
-                foreach (HtmlNode link in document.DocumentNode.SelectNodes(headings))
+                foreach (HtmlNode link in document.DocumentNode.SelectNodes(Headings))
                 {
-                    bodyHeadingsNews = link.InnerText;
+                    BodyHeadingsNews = link.InnerText;
                 }
                 //News
-                foreach (HtmlNode link in document.DocumentNode.SelectNodes(news))
+                foreach (HtmlNode link in document.DocumentNode.SelectNodes(News))
                 {
-                    bodyNews = link.InnerText;
+                    BodyNews = link.InnerText;
                     break;
                 }
                 Console.WriteLine();
-                await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: bodyHeadingsNews + "\n\n" + bodyNews +
-                "\nЧитать продолжение:" + "\n" + text, cancellationToken: token);
                 return;
             }
         }
