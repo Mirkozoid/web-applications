@@ -1,9 +1,5 @@
 ﻿using HtmlAgilityPack;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Varible;
 
 namespace IDLinks
@@ -16,9 +12,8 @@ namespace IDLinks
             foreach (HtmlNode node in Document.DocumentNode.SelectNodes(MainLink))
             {
                 NumberOfNews++;
-                Console.WriteLine(NumberOfNews);
                 LinkList.Add(Url + node.GetAttributeValue("href", null));
-                if (NumberOfNews == 50) break;
+                if (NumberOfNews == 39) break;
             }
         }
 

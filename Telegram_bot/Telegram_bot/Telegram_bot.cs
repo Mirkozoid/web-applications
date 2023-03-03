@@ -27,9 +27,6 @@ namespace Telegram_Bot
                switch (message.Text)
                {
                 case "/start":
-                    await botClient.SendTextMessageAsync(message.Chat.Id, "Hello, I am your financial controller" +
-                    "three times a day I will send you news about how things are on the market." +
-                    " You can also get random news at any time.", cancellationToken: token);
                     ReplyKeyboardMarkup replyKeyboardMarkup = 
                         new(new[]
                         {
@@ -38,10 +35,9 @@ namespace Telegram_Bot
                         {
                          ResizeKeyboard = true
                         };
-                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: "Would you like to continue ?",
-                    replyMarkup: replyKeyboardMarkup,cancellationToken: token);
-                    Console.WriteLine($" First Name: {message.Chat.FirstName}.\n Chat Id: {message.Chat.Id}.\n Message: " +
-                    $"{message.Text}.\n at {DateTime.Now}.");
+                    await botClient.SendTextMessageAsync(message.Chat.Id, GreetingsText, replyMarkup: 
+                    replyKeyboardMarkup, cancellationToken: token);
+                    InformationOutput(message);
                     Console.WriteLine();                
                     break;
                 case "Subscribe to the news.":
@@ -53,36 +49,36 @@ namespace Telegram_Bot
                         {
                             ResizeKeyboard = true
                         };
-                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: "You have successfully subscribed. " +
-                    "Every day at 10:00," +" 15:00 and 20:00 you will receive news from the world of exchanges, stocks and economics." +
-                    "\n\nWhat do you want ?",
-                    replyMarkup: replyKeyboardMarkupforInclude,
-                    cancellationToken: token);
+                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: SubscribeNewsText, 
+                    replyMarkup: replyKeyboardMarkupforInclude,cancellationToken: token);
                     break;
                 case "No thanks.":
-                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: "We will be waiting for you, " +
-                    "click /start if you want to start again.", replyMarkup: new ReplyKeyboardRemove(),
-                    cancellationToken: token);                    
-                    Console.WriteLine($" First Name: {message.Chat.FirstName}.\n Chat Id: {message.Chat.Id}.\n Message: " +
-                    $"{message.Text}.\n at {DateTime.Now}.");
+                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: FarewellText, 
+                    replyMarkup: new ReplyKeyboardRemove(),
+                    cancellationToken: token);
+                    InformationOutput(message);
                     Console.WriteLine();
                     break;
                 case "Get random news.":
                     HTMLparsing.HTMLpars();
-                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: BodyHeadingsNews + "\n\n" + BodyNews +
-                    "\nЧитать продолжение:" + "\n" + Links, cancellationToken: token);
+                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: BodyHeadingsNews + 
+                    "\n\n" + BodyNews +"\nЧитать продолжение:" + "\n" + Links, cancellationToken: token);
                         break;
                 case "Stop working.":
-                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: "We will be waiting for you, " +
-                    "click /start if you want to start again.", replyMarkup: new ReplyKeyboardRemove(),
+                    await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: StoppingWork,
+                    replyMarkup: new ReplyKeyboardRemove(),
                     cancellationToken: token);
-                    Console.WriteLine($" First Name: {message.Chat.FirstName}.\n Chat Id: {message.Chat.Id}.\n Message: " +
-                    $"{message.Text}.\n at {DateTime.Now}.");
+                    InformationOutput(message);
                     Console.WriteLine();
                     break;
                }          
             }
         }
-        async static Task Error(ITelegramBotClient botClient, Exception exception, CancellationToken token) { }    
+        async static Task Error(ITelegramBotClient botClient, Exception exception, CancellationToken token) { }
+        public static void InformationOutput(Message message)
+        {
+            Console.WriteLine($" First Name: {message.Chat.FirstName}.\n Chat Id: {message.Chat.Id}.\n Message: " +
+            $"{message.Text}.\n at {DateTime.Now}.");
+        }
     }
 }
