@@ -1,11 +1,17 @@
 ﻿using HtmlAgilityPack;
 using System.Collections;
+using System.Threading;
+using Telegram.Bot;
+using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Varible
 {
     class Variables
     {
+        public static TelegramBotClient BotClient = new TelegramBotClient("6104127558:AAF00d6Blwvz4DgCVWzf8usO-xPlR1Ehz2U");
+        public static CancellationToken Token;
+        public static Message Messages;
         public static string BodyHeadingsNews;
         public static string BodyNews;
         public static string Links;
@@ -23,6 +29,7 @@ namespace Varible
         public static string Url = "https://www.e1.ru/";
         public static string Headings = "//div[contains(@class,'jsL2X')]//span";
         public static string News = "//div[contains(@class,'qQq9J')]//p";
+        public static System.Timers.Timer newsTimer;
         public static ReplyKeyboardMarkup replyKeyboardMarkup;
         public static ReplyKeyboardMarkup replyKeyboardMarkupforInclude;
         public static ArrayList LinkList = new ArrayList();

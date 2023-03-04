@@ -8,6 +8,7 @@ using Varible;
 using IDLinks;
 using SendingMessages;
 using KeyBoards;
+using Timer = Timers.Timer;
 
 namespace Telegram_Bot
 {
@@ -15,45 +16,54 @@ namespace Telegram_Bot
     {
         static void Main(string[] args)
         {
-            var botClient = new TelegramBotClient("6104127558:AAF00d6Blwvz4DgCVWzf8usO-xPlR1Ehz2U");
             DictionaryLinksNews.IDIselection();
-            botClient.StartReceiving(Update, Error);
+            BotClient.StartReceiving(Update, Error);
             Console.ReadLine();
         }
-        async static Task Update(ITelegramBotClient botClient, Update update, CancellationToken token)
+        async static Task Update(ITelegramBotClient BotClient, Update update, CancellationToken Token)
         {
-            var message = update.Message;
-            if (message != null)
+            Messages = update.Message;
+            if (Messages != null)
             {
-               switch (message.Text)
+               switch (Messages.Text)
                {
                 case "/start":
                     KeyBoard.ReplyKeyBoardMarkup();
-                    SendingMessage.Greetings(botClient, message, token, replyKeyboardMarkup);
-                    SendingMessage.InformationOutput(message);
+                    SendingMessage.Greetings(replyKeyboardMarkup);
+                    SendingMessage.InformationOutput();
                     Console.WriteLine();                
                     break;
                 case "Subscribe to the news.":
                     KeyBoard.ReplyKeyBoardMarkupforInclude();
-                    SendingMessage.SubscribeNews(botClient, message, token, replyKeyboardMarkupforInclude);
+                    SendingMessage.SubscribeNews(replyKeyboardMarkupforInclude);
                     break;
                 case "No thanks.":
-                    SendingMessage.Farewell(botClient, message, token);
-                    SendingMessage.InformationOutput(message);
+                    SendingMessage.Farewell();
+                    SendingMessage.InformationOutput();
                     Console.WriteLine();
                     break;
                 case "Get random news.":
                     HTMLparsing.HTMLpars();
-                    SendingMessage.RandomNews(botClient, message, token);
+                    SendingMessage.RandomNews();
                     break;
                 case "Stop working.":
-                    SendingMessage.StoppingWork(botClient, message, token);
-                    SendingMessage.InformationOutput(message);
+                    SendingMessage.StoppingWork();
+                    SendingMessage.InformationOutput();
                     Console.WriteLine();
                     break;
-               }          
+               }
+                if (Messages.Text == "Subscribe to the news.")
+                {
+                    Timer.SetTimer();
+
+                }
+                //if (Messages.Text == "Stop working.")
+                //{
+                //    newsTimer.Stop();
+                //    newsTimer.Dispose();
+                //}
             }
         }
-        async static Task Error(ITelegramBotClient botClient, Exception exception, CancellationToken token) { }
+        async static Task Error(ITelegramBotClient BotClient, Exception exception, CancellationToken Token) { }
     }
 }

@@ -9,37 +9,35 @@ namespace SendingMessages
 {
     class SendingMessage : Variables
     {
-        public async static void Greetings(ITelegramBotClient botClient, Message message, CancellationToken token,
-        ReplyKeyboardMarkup replyKeyboardMarkup)
+        public async static void Greetings(ReplyKeyboardMarkup replyKeyboardMarkup)
         {
-            await botClient.SendTextMessageAsync(message.Chat.Id, GreetingsText, replyMarkup:
-            replyKeyboardMarkup, cancellationToken: token);
+            await BotClient.SendTextMessageAsync(Messages.Chat.Id, GreetingsText, replyMarkup:
+            replyKeyboardMarkup, cancellationToken: Token);
         }
-        public async static void SubscribeNews(ITelegramBotClient botClient, Message message, CancellationToken token,
-        ReplyKeyboardMarkup replyKeyboardMarkupforInclude)
+        public async static void SubscribeNews(ReplyKeyboardMarkup replyKeyboardMarkupforInclude)
         {
-            await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: SubscribeNewsText,
-            replyMarkup: replyKeyboardMarkupforInclude, cancellationToken: token);
+            await BotClient.SendTextMessageAsync(chatId: Messages.Chat.Id, text: SubscribeNewsText,
+            replyMarkup: replyKeyboardMarkupforInclude, cancellationToken: Token);
         }
-        public async static void Farewell(ITelegramBotClient botClient, Message message, CancellationToken token)
+        public async static void Farewell()
         {
-            await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: FarewellText,
-            replyMarkup: new ReplyKeyboardRemove(), cancellationToken: token);
+            await BotClient.SendTextMessageAsync(chatId: Messages.Chat.Id, text: FarewellText,
+            replyMarkup: new ReplyKeyboardRemove(), cancellationToken: Token);
         }
-        public async static void StoppingWork(ITelegramBotClient botClient, Message message, CancellationToken token)
+        public async static void StoppingWork()
         {
-            await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: StoppingWorkText,
-            replyMarkup: new ReplyKeyboardRemove(), cancellationToken: token);
+            await BotClient.SendTextMessageAsync(chatId: Messages.Chat.Id, text: StoppingWorkText,
+            replyMarkup: new ReplyKeyboardRemove(), cancellationToken: Token);
         }
-        public async static void RandomNews(ITelegramBotClient botClient, Message message, CancellationToken token)
+        public async static void RandomNews()
         {
-            await botClient.SendTextMessageAsync(chatId: message.Chat.Id, text: BodyHeadingsNews +
-            "\n\n" + BodyNews + "\nЧитать продолжение:" + "\n" + Links, cancellationToken: token);
+            await BotClient.SendTextMessageAsync(chatId: Messages.Chat.Id, text: BodyHeadingsNews +
+            "\n\n" + BodyNews + "\nЧитать продолжение:" + "\n" + Links, cancellationToken: Token);
         }
-        public static void InformationOutput(Message message)
+        public static void InformationOutput()
         {
-            Console.WriteLine($" First Name: {message.Chat.FirstName}.\n Chat Id: {message.Chat.Id}.\n Message: " +
-            $"{message.Text}.\n at {DateTime.Now}.");
+            Console.WriteLine($" First Name: {Messages.Chat.FirstName}.\n Chat Id: {Messages.Chat.Id}.\n Message: " +
+            $"{Messages.Text}.\n at {DateTime.Now}.");
         }
     }
 }
