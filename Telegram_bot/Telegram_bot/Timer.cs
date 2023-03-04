@@ -1,4 +1,5 @@
-﻿using SendingMessages;
+﻿using PRS;
+using SendingMessages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace Timers
 
         public static void AlarmRandomNews(object sender, ElapsedEventArgs e)
         {
+            HTMLparsing.HTMLpars();
             SendingMessage.RandomNews();
         }
     }

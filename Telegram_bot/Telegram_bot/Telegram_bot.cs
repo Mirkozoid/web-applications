@@ -55,7 +55,6 @@ namespace Telegram_Bot
                 if (Messages.Text == "Subscribe to the news.")
                 {
                     Timer.SetTimer();
-
                 }
                 //if (Messages.Text == "Stop working.")
                 //{
