@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[1.11.46, )"
             },
+            "System.Runtime": {
+              "target": "Package",
+              "version": "[4.3.1, )"
+            },
             "Telegram.Bot": {
               "target": "Package",
               "version": "[18.0.0, )"

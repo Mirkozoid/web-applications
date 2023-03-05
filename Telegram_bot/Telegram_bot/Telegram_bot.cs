@@ -9,6 +9,7 @@ using IDLinks;
 using SendingMessages;
 using KeyBoards;
 using Timer = Timers.Timer;
+using IDrecords;
 
 namespace Telegram_Bot
 {
@@ -16,7 +17,7 @@ namespace Telegram_Bot
     {
         static void Main(string[] args)
         {
-            DictionaryLinksNews.IDIselection();
+            DictionaryLinksNews.IDIselection();           
             BotClient.StartReceiving(Update, Error);
             Console.ReadLine();
         }
@@ -31,11 +32,19 @@ namespace Telegram_Bot
                     KeyBoard.ReplyKeyBoardMarkup();
                     SendingMessage.Greetings(replyKeyboardMarkup);
                     SendingMessage.InformationOutput();
-                    Console.WriteLine();                
+                    ID = Convert.ToInt32(Messages.Chat.Id);
+                    IdList.Add(ID);
+                    IDrecord.RecordingID();
+                    Console.WriteLine(IdList[IDindex]);                
                     break;
                 case "Subscribe to the news.":
+                    ID = Convert.ToInt32(Messages.Chat.Id);
+                    IdList.Add(ID);
+                    IDrecord.RecordingID();
+                    Console.WriteLine(IdList[IDindex]);
                     KeyBoard.ReplyKeyBoardMarkupforInclude();
                     SendingMessage.SubscribeNews(replyKeyboardMarkupforInclude);
+                    Timer.SetTimer();
                     break;
                 case "No thanks.":
                     SendingMessage.Farewell();
@@ -50,17 +59,11 @@ namespace Telegram_Bot
                     SendingMessage.StoppingWork();
                     SendingMessage.InformationOutput();
                     Console.WriteLine();
+                    timer.Stop();
+                    IdList.Remove(ID);
                     break;
                }
-                if (Messages.Text == "Subscribe to the news.")
-                {
-                    Timer.SetTimer();
-                }
-                //if (Messages.Text == "Stop working.")
-                //{
-                //    newsTimer.Stop();
-                //    newsTimer.Dispose();
-                //}
+               IDrecord.RET();
             }
         }
         async static Task Error(ITelegramBotClient BotClient, Exception exception, CancellationToken Token) { }

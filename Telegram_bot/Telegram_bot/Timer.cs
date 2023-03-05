@@ -14,17 +14,23 @@ namespace Timers
     class Timer : Variables
     {
         public static void SetTimer()
-        {
-            newsTimer = new System.Timers.Timer(60000);
-            newsTimer.Elapsed += AlarmRandomNews;
-            newsTimer.AutoReset = true;
-            newsTimer.Enabled = true;
+        {           
+            timer.Start();
+            timer.Interval = 1000;
+            timer.Elapsed += ChekingTime;
+            timer.AutoReset = true;
+            timer.Enabled = true;
         }
 
-        public static void AlarmRandomNews(object sender, ElapsedEventArgs e)
+        public static void ChekingTime(object source, ElapsedEventArgs e)
         {
-            HTMLparsing.HTMLpars();
-            SendingMessage.RandomNews();
+            TimeNow = DateTime.Now;
+            if (TimeNow.Hour == TimeToAlarm.Hour && TimeNow.Minute == TimeToAlarm.Minute && TimeNow.Second == TimeToAlarm.Second)
+            {
+                HTMLparsing.HTMLpars();
+                SendingMessage.NewsEveryDay();
+                
+            }
         }
     }
 }

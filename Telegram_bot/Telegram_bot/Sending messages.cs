@@ -11,7 +11,7 @@ namespace SendingMessages
     {
         public async static void Greetings(ReplyKeyboardMarkup replyKeyboardMarkup)
         {
-            await BotClient.SendTextMessageAsync(Messages.Chat.Id, GreetingsText, replyMarkup:
+            await BotClient.SendTextMessageAsync(chatId: Messages.Chat.Id, GreetingsText, replyMarkup:
             replyKeyboardMarkup, cancellationToken: Token);
         }
         public async static void SubscribeNews(ReplyKeyboardMarkup replyKeyboardMarkupforInclude)
@@ -33,6 +33,14 @@ namespace SendingMessages
         {
             await BotClient.SendTextMessageAsync(chatId: Messages.Chat.Id, text: BodyHeadingsNews +
             "\n\n" + BodyNews + "\nЧитать продолжение:" + "\n" + Links, cancellationToken: Token);
+        }
+        public async static void NewsEveryDay()
+        {
+            for (int i = 0; i < IdList.Count; i++)
+            {
+               await BotClient.SendTextMessageAsync(chatId: IdList[i], text: BodyHeadingsNews +
+               "\n\n" + BodyNews + "\nЧитать продолжение:" + "\n" + Links, cancellationToken: Token);
+            }
         }
         public static void InformationOutput()
         {
