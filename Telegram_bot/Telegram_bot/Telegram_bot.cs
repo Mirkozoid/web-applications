@@ -23,6 +23,7 @@ namespace Telegram_Bot
         }
         async static Task Update(ITelegramBotClient BotClient, Update update, CancellationToken Token)
         {
+            Timer.SetTimer();
             Messages = update.Message;
             if (Messages != null)
             {
@@ -31,12 +32,8 @@ namespace Telegram_Bot
                 case "/start":
                     KeyBoard.ReplyKeyBoardMarkup();
                     SendingMessage.Greetings(replyKeyboardMarkup);
-                    SendingMessage.InformationOutput();
-                    ID = Convert.ToInt32(Messages.Chat.Id);
-                    IdList.Add(ID);
-                    IDrecord.RecordingID();
-                    Console.WriteLine(IdList[IDindex]);                
-                    break;
+                    SendingMessage.InformationOutput();             
+                        break;
                 case "Subscribe to the news.":
                     ID = Convert.ToInt32(Messages.Chat.Id);
                     IdList.Add(ID);
@@ -44,26 +41,24 @@ namespace Telegram_Bot
                     Console.WriteLine(IdList[IDindex]);
                     KeyBoard.ReplyKeyBoardMarkupforInclude();
                     SendingMessage.SubscribeNews(replyKeyboardMarkupforInclude);
-                    Timer.SetTimer();
-                    break;
+                        break;
                 case "No thanks.":
                     SendingMessage.Farewell();
                     SendingMessage.InformationOutput();
                     Console.WriteLine();
-                    break;
+                        break;
                 case "Get random news.":
                     HTMLparsing.HTMLpars();
                     SendingMessage.RandomNews();
-                    break;
+                        break;
                 case "Stop working.":
                     SendingMessage.StoppingWork();
                     SendingMessage.InformationOutput();
                     Console.WriteLine();
                     timer.Stop();
                     IdList.Remove(ID);
-                    break;
+                        break;
                }
-               IDrecord.RET();
             }
         }
         async static Task Error(ITelegramBotClient BotClient, Exception exception, CancellationToken Token) { }

@@ -1,12 +1,7 @@
 ﻿using PRS;
 using SendingMessages;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
-using Telegram.Bot;
 using Varible;
 
 namespace Timers
@@ -29,7 +24,7 @@ namespace Timers
             {
                 HTMLparsing.HTMLpars();
                 SendingMessage.NewsEveryDay();
-                
+                return;
             }
         }
     }

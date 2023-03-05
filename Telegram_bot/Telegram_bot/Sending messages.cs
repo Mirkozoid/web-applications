@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Threading;
 using Telegram.Bot;
-using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using Varible;
 
@@ -40,6 +38,7 @@ namespace SendingMessages
             {
                await BotClient.SendTextMessageAsync(chatId: IdList[i], text: BodyHeadingsNews +
                "\n\n" + BodyNews + "\nЧитать продолжение:" + "\n" + Links, cancellationToken: Token);
+                
             }
         }
         public static void InformationOutput()

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Varible;
 
 namespace IDrecords
@@ -13,7 +9,8 @@ namespace IDrecords
         {
             for (int i = 0; i < IdList.Count; i++)
             {
-                if (IdList[i] == ID) IDindex = i;   
+                if (IdList[i] == ID) IDindex = i;
+                var uniq = IdList.Distinct();
             }
         }
     }

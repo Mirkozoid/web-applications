@@ -33,7 +33,7 @@ namespace Varible
         public static string Url = "https://www.e1.ru/";
         public static string Headings = "//div[contains(@class,'jsL2X')]//span";
         public static string News = "//div[contains(@class,'qQq9J')]//p";
-        public static DateTime TimeToAlarm = DateTime.Now.Date.AddHours(15).AddMinutes(50);
+        public static DateTime TimeToAlarm = DateTime.Now.Date.AddHours(17).AddMinutes(35);
         public static DateTime TimeNow;
         public static System.Timers.Timer timer = new System.Timers.Timer();
         public static ReplyKeyboardMarkup replyKeyboardMarkup;
