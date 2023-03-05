@@ -38,7 +38,7 @@ namespace Telegram_Bot
                     ID = Convert.ToInt32(Messages.Chat.Id);
                     IdList.Add(ID);
                     IDrecord.RecordingID();
-                    Console.WriteLine(IdList[IDindex]);
+                    SendingMessage.InformationOutput();
                     KeyBoard.ReplyKeyBoardMarkupforInclude();
                     SendingMessage.SubscribeNews(replyKeyboardMarkupforInclude);
                         break;
