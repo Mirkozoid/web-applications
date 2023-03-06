@@ -3,21 +3,23 @@ using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
-using PRS;
-using Varible;
+using ParsingHTML;
 using IDLinks;
 using SendingMessages;
 using KeyBoards;
 using Timer = Timers.Timer;
-using IDrecords;
+using User;
 
 namespace Telegram_Bot
 {
-    class Program : Variables
+    class Program 
     {
-        public static ITelegramBotClient Bot;
+        public static TelegramBotClient BotClient;
+        public static CancellationToken Token;
+        public static Message Messages;
         static void Main(string[] args)
         {
+            BotClient = new TelegramBotClient("6104127558:AAF00d6Blwvz4DgCVWzf8usO-xPlR1Ehz2U");
             DictionaryLinksNews.IDIselection();           
             BotClient.StartReceiving(Update, Error);
             Console.ReadLine();
@@ -32,32 +34,32 @@ namespace Telegram_Bot
                {
                 case "/start":
                     KeyBoard.ReplyKeyBoardMarkup();
-                    SendingMessage.Greetings(replyKeyboardMarkup);
+                    SendingMessage.Greetings(KeyBoard.replyKeyboardMarkup);
                     SendingMessage.InformationOutput();             
                         break;
                 case "Подписаться на новости.":
-                    ID = Convert.ToInt32(Messages.Chat.Id);
-                    IdList.Add(ID);
-                    IDrecord.RecordingID();
+                    Users.ID = Convert.ToInt32(Messages.Chat.Id);
+                    Users.ListId.Add(Users.ID);
+                    Users.UserId();
                     SendingMessage.InformationOutput();
                     KeyBoard.ReplyKeyBoardMarkupforInclude();
-                    SendingMessage.SubscribeNews(replyKeyboardMarkupforInclude);
+                    SendingMessage.SubscribeNews(KeyBoard.replyKeyboardMarkupforInclude);
                         break;
                 case "Нет, спасибо.":
-                    SendingMessage.Farewell();
+                    SendingMessage.StoppingWork();
                     SendingMessage.InformationOutput();
                     Console.WriteLine();
                         break;
                 case "Получить новость.":
-                    HTMLparsing.HTMLpars();
+                    Parsing.ParsingNews();
                     SendingMessage.RandomNews();
                         break;
                 case "Остановить бота.":
                     SendingMessage.StoppingWork();
                     SendingMessage.InformationOutput();
                     Console.WriteLine();
-                    timer.Stop();
-                    IdList.Remove(ID);
+                    Timer.timer.Stop();
+                    Users.ListId.Remove(Users.ID);
                         break;
                }
             }
