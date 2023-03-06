@@ -15,6 +15,7 @@ namespace Telegram_Bot
 {
     class Program : Variables
     {
+        public static ITelegramBotClient Bot;
         static void Main(string[] args)
         {
             DictionaryLinksNews.IDIselection();           
@@ -34,7 +35,7 @@ namespace Telegram_Bot
                     SendingMessage.Greetings(replyKeyboardMarkup);
                     SendingMessage.InformationOutput();             
                         break;
-                case "Subscribe to the news.":
+                case "Подписаться на новости.":
                     ID = Convert.ToInt32(Messages.Chat.Id);
                     IdList.Add(ID);
                     IDrecord.RecordingID();
@@ -42,16 +43,16 @@ namespace Telegram_Bot
                     KeyBoard.ReplyKeyBoardMarkupforInclude();
                     SendingMessage.SubscribeNews(replyKeyboardMarkupforInclude);
                         break;
-                case "No thanks.":
+                case "Нет, спасибо.":
                     SendingMessage.Farewell();
                     SendingMessage.InformationOutput();
                     Console.WriteLine();
                         break;
-                case "Get random news.":
+                case "Получить новость.":
                     HTMLparsing.HTMLpars();
                     SendingMessage.RandomNews();
                         break;
-                case "Stop working.":
+                case "Остановить бота.":
                     SendingMessage.StoppingWork();
                     SendingMessage.InformationOutput();
                     Console.WriteLine();

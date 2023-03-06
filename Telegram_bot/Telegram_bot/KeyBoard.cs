@@ -10,7 +10,7 @@ namespace KeyBoards
             replyKeyboardMarkup =
              new(new[]
              {
-                new KeyboardButton[] { "Subscribe to the news.", "No thanks." },
+                new KeyboardButton[] { "Подписаться на новости.", "Нет, спасибо." },
              })
              {
                 ResizeKeyboard = true
@@ -21,7 +21,7 @@ namespace KeyBoards
             replyKeyboardMarkupforInclude =
              new(new[]
              {
-                new KeyboardButton[] { "Get random news.","Stop working." },
+                new KeyboardButton[] { "Получить новость.","Остановить бота." },
              })
              {
                 ResizeKeyboard = true

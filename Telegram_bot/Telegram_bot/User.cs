@@ -10,7 +10,6 @@ namespace IDrecords
             for (int i = 0; i < IdList.Count; i++)
             {
                 if (IdList[i] == ID) IDindex = i;
-                var uniq = IdList.Distinct();
             }
         }
     }

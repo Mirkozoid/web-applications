@@ -30,14 +30,14 @@ namespace SendingMessages
         public async static void RandomNews()
         {
             await BotClient.SendTextMessageAsync(chatId: Messages.Chat.Id, text: BodyHeadingsNews +
-            "\n\n" + BodyNews + "\nЧитать продолжение:" + "\n" + Links, cancellationToken: Token);
+            "\n\n" + BodyNews + "\nRead more:" + "\n" + Links, cancellationToken: Token);
         }
         public async static void NewsEveryDay()
         {
             for (int i = 0; i < IdList.Count; i++)
             {
                await BotClient.SendTextMessageAsync(chatId: IdList[i], text: BodyHeadingsNews +
-               "\n\n" + BodyNews + "\nЧитать продолжение:" + "\n" + Links, cancellationToken: Token);
+               "\n\n" + BodyNews + "\nRead more:" + "\n" + Links, cancellationToken: Token);
                 
             }
         }
