@@ -1,15 +1,17 @@
-﻿using System.Linq;
-using Varible;
+﻿using System.Collections.Generic;
 
-namespace IDrecords
+namespace User
 {
-    class IDrecord : Variables
+    class Users
     {
-        public static void RecordingID()
+        public static int ID;
+        public static int IndexId;
+        public static List<int> ListId = new List<int>();
+        public static void UserId()
         {
-            for (int i = 0; i < IdList.Count; i++)
+            for (int i = 0; i < ListId.Count; i++)
             {
-                if (IdList[i] == ID) IDindex = i;
+                if (ListId[i] == ID) IndexId = i;
             }
         }
     }

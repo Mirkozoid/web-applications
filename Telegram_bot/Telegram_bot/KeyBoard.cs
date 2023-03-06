@@ -1,10 +1,11 @@
 ﻿using Telegram.Bot.Types.ReplyMarkups;
-using Varible;
 
 namespace KeyBoards
 {
-    class KeyBoard : Variables
+    class KeyBoard
     {
+        public static ReplyKeyboardMarkup replyKeyboardMarkup;
+        public static ReplyKeyboardMarkup replyKeyboardMarkupforInclude;
         public static void ReplyKeyBoardMarkup()
         {
             replyKeyboardMarkup =
