@@ -1,15 +1,15 @@
 ﻿using HtmlAgilityPack;
 using IDLinks;
-using News;
+using NewsContainer;
 using System;
 using System.Text;
 
-namespace ParsingHTML
+namespace Parsing
 {
-    class Parsing
+    class ParsingHTML
     {
         public static HtmlWeb Ws = new HtmlWeb();
-        public static HtmlDocument Document = Ws.Load(NewsContainer.Url);
+        public static HtmlDocument Document = Ws.Load(News.Url);
         public static string BodyHeadings;
         public static string BodyNews;
         public static string Links;
@@ -28,7 +28,7 @@ namespace ParsingHTML
                 }
                 Console.WriteLine(text);
                 //Headings
-                foreach (HtmlNode link in Document.DocumentNode.SelectNodes(NewsContainer.Headings))
+                foreach (HtmlNode link in Document.DocumentNode.SelectNodes(News.Headings))
                 {
                     BodyHeadings = link.InnerText;
                     BodyHeadings = BodyHeadings.Replace("&mdash;", "-");
@@ -36,7 +36,7 @@ namespace ParsingHTML
                     BodyHeadings = BodyHeadings.Replace("&raquo;", "");
                 }
                 //News
-                foreach (HtmlNode link in Document.DocumentNode.SelectNodes(NewsContainer.Tidings))
+                foreach (HtmlNode link in Document.DocumentNode.SelectNodes(News.Tidings))
                 {
                     BodyNews = link.InnerText;
                     BodyNews = BodyNews.Replace("&mdash;", "-");
@@ -45,7 +45,8 @@ namespace ParsingHTML
                     break;
                 }
                 Console.WriteLine();
-                DictionaryLinksNews.LinkList.RemoveAt(0);
+                News.TextNews.Add($"{ParsingHTML.BodyHeadings}\n\n{ParsingHTML.BodyNews}\nЧитать далее:\n{ParsingHTML.Links}");
+                //DictionaryLinksNews.LinkList.RemoveAt(0);
                 if(DictionaryLinksNews.LinkList.Count == 1) DictionaryLinksNews.IDIselection();
                 return;
             }

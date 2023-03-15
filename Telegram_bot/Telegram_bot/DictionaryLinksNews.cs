@@ -1,6 +1,6 @@
 ﻿using HtmlAgilityPack;
-using News;
-using ParsingHTML;
+using NewsContainer;
+using Parsing;
 using System.Collections.Generic;
 
 namespace IDLinks
@@ -11,14 +11,15 @@ namespace IDLinks
         public static void IDIselection()
         {
             int NumberOfNews = 0;
-            foreach (HtmlNode node in Parsing.Document.DocumentNode.SelectNodes(NewsContainer.MainLink))
+            foreach (HtmlNode node in ParsingHTML.Document.DocumentNode.SelectNodes(News.MainLink))
             {
                 NumberOfNews++;
-                LinkList.Add(NewsContainer.Url + node.GetAttributeValue("href", null));
+                LinkList.Add(News.Url + node.GetAttributeValue("href", null));
                 if (NumberOfNews == 50) break;
             }
             for (int i = 0; i < LinkList.Count; i++)
             {
+                System.Console.WriteLine(LinkList[i]);
                 if (LinkList[i].Contains("comments")) LinkList.RemoveAt(i);
             }
         }

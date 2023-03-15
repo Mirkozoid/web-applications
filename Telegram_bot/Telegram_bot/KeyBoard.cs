@@ -4,11 +4,7 @@ namespace KeyBoards
 {
     class KeyBoard
     {
-        public static ReplyKeyboardMarkup replyKeyboardMarkup;
-        public static ReplyKeyboardMarkup replyKeyboardMarkupforInclude;
-        public static void ReplyKeyBoardMarkup()
-        {
-            replyKeyboardMarkup =
+        public static ReplyKeyboardMarkup ButtonsSubscribeOrRefusal =
              new(new[]
              {
                 new KeyboardButton[] { "Подписаться на новости.", "Нет, спасибо." },
@@ -16,10 +12,7 @@ namespace KeyBoards
              {
                 ResizeKeyboard = true
              };
-        }
-        public static void ReplyKeyBoardMarkupforInclude()
-        {
-            replyKeyboardMarkupforInclude =
+        public static ReplyKeyboardMarkup ButtonsReceiveNewsOrStopBot =
              new(new[]
              {
                 new KeyboardButton[] { "Получить новость.","Остановить бота." },
@@ -27,6 +20,5 @@ namespace KeyBoards
              {
                 ResizeKeyboard = true
              };
-        }
     }
 }
