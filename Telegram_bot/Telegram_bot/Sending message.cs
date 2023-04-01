@@ -29,7 +29,8 @@ namespace SendingMessages
         }
         public async static void RandomNews()
         {
-            await Program.BotClient.SendTextMessageAsync(chatId: Program.Messages.Chat.Id, text: News.TextNews[0], cancellationToken: Program.Token);
+            await Program.BotClient.SendTextMessageAsync(chatId: Program.Messages.Chat.Id, text: ParsingHTML.BodyHeadings +
+               "\n\n" + ParsingHTML.BodyNews + "\nЧитать далее:" + "\n" + ParsingHTML.Links, cancellationToken: Program.Token);
         }
         public async static void NewsEveryDay()
         {

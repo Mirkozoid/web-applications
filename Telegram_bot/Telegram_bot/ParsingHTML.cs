@@ -18,10 +18,8 @@ namespace Parsing
             Ws.OverrideEncoding = Encoding.UTF8;
             foreach (string text in DictionaryLinksNews.LinkList)
             {
-                int count = -1;
                 Links = text;
                 Document = Ws.Load(text);
-                count++;
                 if (DictionaryLinksNews.LinkList[0] == DictionaryLinksNews.LinkList[1])
                 {
                     DictionaryLinksNews.LinkList.RemoveAt(0);
@@ -46,7 +44,7 @@ namespace Parsing
                 }
                 Console.WriteLine();
                 News.TextNews.Add($"{ParsingHTML.BodyHeadings}\n\n{ParsingHTML.BodyNews}\nЧитать далее:\n{ParsingHTML.Links}");
-                //DictionaryLinksNews.LinkList.RemoveAt(0);
+                DictionaryLinksNews.LinkList.RemoveAt(0);
                 if(DictionaryLinksNews.LinkList.Count == 1) DictionaryLinksNews.IDIselection();
                 return;
             }
