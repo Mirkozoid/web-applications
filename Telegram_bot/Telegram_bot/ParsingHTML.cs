@@ -32,6 +32,7 @@ namespace Parsing
                     BodyHeadings = BodyHeadings.Replace("&mdash;", "-");
                     BodyHeadings = BodyHeadings.Replace("&laquo;", "");
                     BodyHeadings = BodyHeadings.Replace("&raquo;", "");
+                    BodyHeadings = BodyHeadings.Replace("&ndash;", "");
                 }
                 //News
                 foreach (HtmlNode link in Document.DocumentNode.SelectNodes(News.Tidings))
@@ -40,6 +41,7 @@ namespace Parsing
                     BodyNews = BodyNews.Replace("&mdash;", "-");
                     BodyNews = BodyNews.Replace("&laquo;", "");
                     BodyNews = BodyNews.Replace("&raquo;", "");
+                    BodyNews = BodyNews.Replace("&ndash;", "");
                     break;
                 }
                 Console.WriteLine();

@@ -1,4 +1,5 @@
-﻿using KeyBoards;
+﻿using IDLinks;
+using KeyBoards;
 using NewsContainer;
 using Parsing;
 using System;
@@ -34,6 +35,7 @@ namespace SendingMessages
         }
         public async static void NewsEveryDay()
         {
+            DictionaryLinksNews.LinkList.RemoveAt(0);
             for (int i = 0; i < Users.ListUserID.Count; i++)
             {
                await Program.BotClient.SendTextMessageAsync(chatId: Users.ListUserID[i], text: ParsingHTML.BodyHeadings +
