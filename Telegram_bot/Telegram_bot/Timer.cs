@@ -1,5 +1,4 @@
-﻿using Parsing;
-using SendingMessages;
+﻿using SendingMessages;
 using System;
 using System.Timers;
 
@@ -7,7 +6,7 @@ namespace Timers
 {
     class Timer
     {
-        public static DateTime TimeToAlarm = DateTime.Now.Date.AddHours(20).AddMinutes(49);
+        public static DateTime TimeToAlarm = DateTime.Now.Date.AddHours(16).AddMinutes(00);
         public static DateTime TimeNow;
         public static System.Timers.Timer timer = new System.Timers.Timer();
         public static void SetTimer()

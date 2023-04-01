@@ -43,7 +43,7 @@ namespace Parsing
                     break;
                 }
                 Console.WriteLine();
-                News.TextNews.Add($"{ParsingHTML.BodyHeadings}\n\n{ParsingHTML.BodyNews}\nЧитать далее:\n{ParsingHTML.Links}");
+                //News.TextNews.Add($"{ParsingHTML.BodyHeadings}\n\n{ParsingHTML.BodyNews}\nЧитать далее:\n{ParsingHTML.Links}");
                 DictionaryLinksNews.LinkList.RemoveAt(0);
                 if(DictionaryLinksNews.LinkList.Count == 1) DictionaryLinksNews.IDIselection();
                 return;
