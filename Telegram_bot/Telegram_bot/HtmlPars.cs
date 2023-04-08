@@ -11,7 +11,7 @@ namespace Telegram_Bot
         public static string BodyHeadings;
         public static string BodyNews;
         public static string Links;
-        public static void ParsingNews()
+        public static void ParsNews()
         {
             Ws.OverrideEncoding = Encoding.UTF8;
             foreach (string text in DictionaryLinksNews.LinkList)
@@ -32,21 +32,7 @@ namespace Telegram_Bot
                 foreach (HtmlNode link in Document.DocumentNode.SelectNodes(News.Tidings))
                 {
                     BodyNews = link.InnerText;
-                    BodyNews = BodyNews.Replace("&mdash;", "-");
-                    BodyNews = BodyNews.Replace("&laquo;", "");
-                    BodyNews = BodyNews.Replace("&raquo;", "");
-                    BodyNews = BodyNews.Replace("&ndash;", "-");
                 }
-                News.news.Add(new News()
-                {
-                    link = Links,
-                    headings = BodyHeadings,
-                    mainText = BodyNews
-                });
-                //News.TextNews.Add($"{HtmlPars.BodyHeadings}\n\n{HtmlPars.BodyNews}\nЧитать далее:\n{HtmlPars.Links}");
-                DictionaryLinksNews.LinkList.RemoveAt(0);
-                if(DictionaryLinksNews.LinkList.Count == 1) DictionaryLinksNews.IdLinks();
-                return;
             }
         }
     }

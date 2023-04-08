@@ -23,16 +23,5 @@ namespace Telegram_Bot
                 System.Console.WriteLine(LinkList[i]);
             }
         }
-        public static void RenderLinks()
-        {
-            for (int i = 0; i < LinkList.Count; i++)
-            {
-                if (DictionaryLinksNews.LinkList[i] == DictionaryLinksNews.LinkList[i + 1])
-                {
-                    DictionaryLinksNews.LinkList.RemoveAt(0);
-                }
-                if (LinkList[i].Contains("https://ru.investing.com/news/latest-news/news/commodities-news/article-2247401")) LinkList.RemoveAt(i);
-            }
-        }
     }
 }

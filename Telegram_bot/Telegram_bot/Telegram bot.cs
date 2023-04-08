@@ -31,11 +31,7 @@ namespace Telegram_Bot
                     SendingMessage.InformationOutput();             
                         break;
                 case "Подписаться на новости.":
-                    User.ListUserID.Add(Messages.Chat.Id);
-                    User.users.Add(new User()
-                    {
-                      id = Messages.Chat.Id
-                    });
+                    User.users.Add(new User(){id = Messages.Chat.Id});
                     SendingMessage.InformationOutput();
                     SendingMessage.SubscribeNews();
                         break;
@@ -45,7 +41,6 @@ namespace Telegram_Bot
                     Console.WriteLine();
                         break;
                 case "Получить новость.":
-                    HtmlPars.ParsingNews();
                     SendingMessage.RandomNews();
                         break;
                 case "Остановить бота.":
@@ -53,7 +48,6 @@ namespace Telegram_Bot
                     SendingMessage.StopWork();
                     SendingMessage.InformationOutput();
                     Console.WriteLine();
-                    User.ListUserID.Remove(Messages.Chat.Id);
                         break;
                }
             }
