@@ -1,6 +1,6 @@
 ﻿using Telegram.Bot.Types.ReplyMarkups;
 
-namespace KeyBoards
+namespace Telegram_Bot
 {
     class KeyBoard
     {

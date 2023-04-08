@@ -1,12 +1,10 @@
 ﻿using HtmlAgilityPack;
-using IDLinks;
-using NewsContainer;
 using System;
 using System.Text;
 
-namespace Parsing
+namespace Telegram_Bot
 {
-    class ParsingHTML
+    class HtmlPars
     {
         public static HtmlWeb Ws = new HtmlWeb();
         public static HtmlDocument Document = Ws.Load(News.Url);
@@ -29,10 +27,6 @@ namespace Parsing
                 foreach (HtmlNode link in Document.DocumentNode.SelectNodes(News.Headings))
                 {
                     BodyHeadings = link.InnerText;
-                    BodyHeadings = BodyHeadings.Replace("&mdash;", "-");
-                    BodyHeadings = BodyHeadings.Replace("&laquo;", "");
-                    BodyHeadings = BodyHeadings.Replace("&raquo;", "");
-                    BodyHeadings = BodyHeadings.Replace("&ndash;", "-");
                 }
                 //News
                 foreach (HtmlNode link in Document.DocumentNode.SelectNodes(News.Tidings))
@@ -42,12 +36,16 @@ namespace Parsing
                     BodyNews = BodyNews.Replace("&laquo;", "");
                     BodyNews = BodyNews.Replace("&raquo;", "");
                     BodyNews = BodyNews.Replace("&ndash;", "-");
-                    break;
                 }
-                Console.WriteLine();
-                //News.TextNews.Add($"{ParsingHTML.BodyHeadings}\n\n{ParsingHTML.BodyNews}\nЧитать далее:\n{ParsingHTML.Links}");
+                News.news.Add(new News()
+                {
+                    link = Links,
+                    headings = BodyHeadings,
+                    mainText = BodyNews
+                });
+                //News.TextNews.Add($"{HtmlPars.BodyHeadings}\n\n{HtmlPars.BodyNews}\nЧитать далее:\n{HtmlPars.Links}");
                 DictionaryLinksNews.LinkList.RemoveAt(0);
-                if(DictionaryLinksNews.LinkList.Count == 1) DictionaryLinksNews.IDIselection();
+                if(DictionaryLinksNews.LinkList.Count == 1) DictionaryLinksNews.IdLinks();
                 return;
             }
         }

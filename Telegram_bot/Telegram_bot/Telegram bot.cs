@@ -3,11 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
-using Parsing;
-using IDLinks;
-using SendingMessages;
-using Timer = Timers.Timer;
-using User;
 
 namespace Telegram_Bot
 {
@@ -19,7 +14,7 @@ namespace Telegram_Bot
         static void Main(string[] args)
         {
             BotClient = new TelegramBotClient("6104127558:AAF00d6Blwvz4DgCVWzf8usO-xPlR1Ehz2U");
-            DictionaryLinksNews.IDIselection();
+            DictionaryLinksNews.IdLinks();
             Timer.SetTimer();
             BotClient.StartReceiving(Update, Error);
             Console.ReadLine();
@@ -36,7 +31,11 @@ namespace Telegram_Bot
                     SendingMessage.InformationOutput();             
                         break;
                 case "Подписаться на новости.":
-                    Users.ListUserID.Add(Messages.Chat.Id);
+                    User.ListUserID.Add(Messages.Chat.Id);
+                    User.users.Add(new User()
+                    {
+                      id = Messages.Chat.Id
+                    });
                     SendingMessage.InformationOutput();
                     SendingMessage.SubscribeNews();
                         break;
@@ -46,14 +45,15 @@ namespace Telegram_Bot
                     Console.WriteLine();
                         break;
                 case "Получить новость.":
-                    ParsingHTML.ParsingNews();
+                    HtmlPars.ParsingNews();
                     SendingMessage.RandomNews();
                         break;
                 case "Остановить бота.":
+                    User.users.Remove(User.users.Find(User => User.id == Messages.Chat.Id));
                     SendingMessage.StopWork();
                     SendingMessage.InformationOutput();
                     Console.WriteLine();
-                    Users.ListUserID.Remove(Messages.Chat.Id);
+                    User.ListUserID.Remove(Messages.Chat.Id);
                         break;
                }
             }

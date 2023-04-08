@@ -1,15 +1,8 @@
-﻿using IDLinks;
-using KeyBoards;
-using NewsContainer;
-using Parsing;
-using System;
+﻿using System;
 using Telegram.Bot;
 using Telegram.Bot.Types.ReplyMarkups;
-using Telegram_Bot;
-using Texts;
-using User;
 
-namespace SendingMessages
+namespace Telegram_Bot
 {
     class SendingMessage
     {
@@ -30,16 +23,16 @@ namespace SendingMessages
         }
         public async static void RandomNews()
         {
-            await Program.BotClient.SendTextMessageAsync(chatId: Program.Messages.Chat.Id, text: ParsingHTML.BodyHeadings +
-               "\n\n" + ParsingHTML.BodyNews + "\nЧитать далее:" + "\n" + ParsingHTML.Links, cancellationToken: Program.Token);
+            await Program.BotClient.SendTextMessageAsync(chatId: Program.Messages.Chat.Id, text: News.news[1].headings + 
+            "\n\n" + News.news[1].mainText+ "\n" + News.news[1].link, cancellationToken: Program.Token);
+            Console.WriteLine(News.news[0].mainText);
         }
         public async static void NewsEveryDay()
         {
-            DictionaryLinksNews.LinkList.RemoveAt(0);
-            for (int i = 0; i < Users.ListUserID.Count; i++)
+            for (int i = 0; i < User.ListUserID.Count; i++)
             {
-               await Program.BotClient.SendTextMessageAsync(chatId: Users.ListUserID[i], text: ParsingHTML.BodyHeadings +
-               "\n\n" + ParsingHTML.BodyNews + "\nЧитать далее:" + "\n" + ParsingHTML.Links, cancellationToken: Program.Token);    
+               await Program.BotClient.SendTextMessageAsync(chatId: User.ListUserID[i], text: News.news[0].headings +
+               "\n\n" + News.news[0].mainText + "\n" + News.news[0].link, cancellationToken: Program.Token);    
             }
         }
         public static void InformationOutput()
