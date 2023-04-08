@@ -15,8 +15,6 @@ namespace Telegram_Bot
         public static List<string> textNews = new List<string>();
         public static void RenderNews()
         {
-            for (int i = 0; i < DictionaryLinksNews.LinkList.Count; i++)
-            {
                 HtmlPars.ParsNews();
                 HtmlPars.BodyHeadings = HtmlPars.BodyHeadings.Replace("&mdash;", "-");
                 HtmlPars.BodyHeadings = HtmlPars.BodyHeadings.Replace("&laquo;", "");
@@ -33,7 +31,6 @@ namespace Telegram_Bot
                     mainText = HtmlPars.BodyNews
                 });
                 textNews.Add(HtmlPars.BodyHeadings + "\n\n" + HtmlPars.BodyNews + "\n" + HtmlPars.Links);
-            }
         }
         //public static List<string> TextNews = new List<string>();
     }

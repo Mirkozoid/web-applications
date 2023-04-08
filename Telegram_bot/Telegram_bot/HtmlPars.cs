@@ -22,7 +22,6 @@ namespace Telegram_Bot
                 {
                     DictionaryLinksNews.LinkList.RemoveAt(0);
                 }
-                Console.WriteLine(text);
                 //Headings
                 foreach (HtmlNode link in Document.DocumentNode.SelectNodes(News.Headings))
                 {
@@ -33,6 +32,7 @@ namespace Telegram_Bot
                 {
                     BodyNews = link.InnerText;
                 }
+                return;
             }
         }
     }

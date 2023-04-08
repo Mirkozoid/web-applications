@@ -23,14 +23,16 @@ namespace Telegram_Bot
         }
         public async static void RandomNews()
         {
-            int chatId = Convert.ToInt32(User.users.Find(User => User.id == Program.Messages.Chat.Id));
-            await Program.BotClient.SendTextMessageAsync(chatId: User.users[chatId].id, text: News.textNews[0], cancellationToken: Program.Token);
+            int chatId = Convert.ToInt32(User.users.Find(User => User.id == Program.Messages.Chat.Id).id);
+            Console.WriteLine(Convert.ToInt32(User.users[0].id));
+            Console.WriteLine(User.users.Find(User => User.id == Program.Messages.Chat.Id).id);
+            await Program.BotClient.SendTextMessageAsync(chatId: chatId, text: News.textNews[0], cancellationToken: Program.Token);
         }
         public async static void NewsEveryDay()
         {
             for (int i = 0; i < User.users.Count; i++)
             {
-               await Program.BotClient.SendTextMessageAsync(chatId: User.users[i].id, text: News.textNews[0], cancellationToken: Program.Token);    
+               await Program.BotClient.SendTextMessageAsync(chatId: Convert.ToInt32(User.users[i].id), text: News.textNews[0], cancellationToken: Program.Token);    
             }
         }
         public static void InformationOutput()
