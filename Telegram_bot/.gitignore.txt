@@ -1,2 +1,2 @@
-tokenBot
-tokenAPI
+/tokenBot.txt
+/tokenAPI.txt
