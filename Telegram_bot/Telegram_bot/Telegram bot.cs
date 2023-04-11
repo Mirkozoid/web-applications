@@ -14,8 +14,9 @@ namespace Telegram_Bot
         static void Main(string[] args)
         {
             BotClient = new TelegramBotClient("6104127558:AAF00d6Blwvz4DgCVWzf8usO-xPlR1Ehz2U");
-            DictionaryLinksNews.IdLinks();
-            Timer.SetTimer();
+            CreatLinks.SortLinks();
+            News.RenderNews();
+            Timer.TimerNews();
             BotClient.StartReceiving(Update, Error);
             Console.ReadLine();
         }
@@ -27,30 +28,27 @@ namespace Telegram_Bot
                switch (Messages.Text)
                {
                 case "/start":
-                    SendingMessage.Greetings();
-                    SendingMessage.InformationOutput();             
+                    User.users.Add(new User() { id = Messages.Chat.Id });
+                    SendMessage.Greetings();
+                    SendMessage.InformationOutput();             
                         break;
                 case "Подписаться на новости.":
-                    User.users.Add(new User(){id = Messages.Chat.Id});
-                        News.RenderNews();
-                        SendingMessage.InformationOutput();
-                    SendingMessage.SubscribeNews();
+                    SendMessage.InformationOutput();
+                    SendMessage.SubscribeNews();
                         break;
                 case "Нет, спасибо.":
-                    SendingMessage.StopWork();
-                    SendingMessage.InformationOutput();
+                    SendMessage.StopWork();
+                    SendMessage.InformationOutput();
                     Console.WriteLine();
                         break;
                 case "Получить новость.":
-                    News.RenderNews();
-                    SendingMessage.RandomNews();
+                    SendMessage.RandomNews();
+                        Console.WriteLine(News.textNews[6], News.textNews[5]);
                         break;
                 case "Остановить бота.":
-                        Console.WriteLine(User.users.Count);
                     User.users.Remove(User.users.Find(User => User.id == Messages.Chat.Id));
-                        Console.WriteLine(User.users.Count);
-                        SendingMessage.StopWork();
-                    SendingMessage.InformationOutput();
+                    SendMessage.StopWork();
+                    SendMessage.InformationOutput();
                     Console.WriteLine();
                         break;
                }

@@ -6,32 +6,21 @@ namespace Telegram_Bot
 {
     class HtmlPars
     {
-        public static HtmlWeb Ws = new HtmlWeb();
-        public static HtmlDocument Document = Ws.Load(News.Url);
-        public static string BodyHeadings;
         public static string BodyNews;
         public static string Links;
         public static void ParsNews()
         {
-            Ws.OverrideEncoding = Encoding.UTF8;
-            foreach (string text in DictionaryLinksNews.LinkList)
+            CreatLinks.Ws.OverrideEncoding = Encoding.UTF8;
+            foreach (string text in CreatLinks.LinkList)
             {
                 Links = text;
-                Document = Ws.Load(text);
-                if (DictionaryLinksNews.LinkList[0] == DictionaryLinksNews.LinkList[1])
-                {
-                    DictionaryLinksNews.LinkList.RemoveAt(0);
-                }
-                //Headings
-                foreach (HtmlNode link in Document.DocumentNode.SelectNodes(News.Headings))
-                {
-                    BodyHeadings = link.InnerText;
-                }
-                //News
-                foreach (HtmlNode link in Document.DocumentNode.SelectNodes(News.Tidings))
+                CreatLinks.Document = CreatLinks.Ws.Load(text);
+                foreach (HtmlNode link in CreatLinks.Document.DocumentNode.SelectNodes(News.Tidings))
                 {
                     BodyNews = link.InnerText;
                 }
+                Console.WriteLine(BodyNews);
+                CreatLinks.LinkList.RemoveAt(0);
                 return;
             }
         }

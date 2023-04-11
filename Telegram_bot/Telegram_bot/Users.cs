@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Telegram_Bot
 {
@@ -6,6 +7,5 @@ namespace Telegram_Bot
     {
         public long id;
         public static List<User> users = new();
-        //public static List<long> ListUserID = new List<long>();
     }
 }
