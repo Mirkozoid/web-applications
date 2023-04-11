@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Timers;
 
-namespace Telegram_Bot
+namespace TelegramBot
 {
     class Timer
     {
@@ -34,7 +34,6 @@ namespace Telegram_Bot
             if (TimeNow.Hour == TimeToAlarm.Hour && TimeNow.Minute == TimeToAlarm.Minute && TimeNow.Second == TimeToAlarm.Second)
             {
                 SendMessage.NewsEveryDay();
-                return;
             }
         }
     }

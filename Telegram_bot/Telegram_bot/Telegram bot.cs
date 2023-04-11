@@ -1,18 +1,21 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegrambot;
 
-namespace Telegram_Bot
+namespace TelegramBot
 {
     class Program 
     {
         public static TelegramBotClient BotClient;
-        public static Message Messages;
         static void Main(string[] args)
         {
-            BotClient = new TelegramBotClient("6104127558:AAF00d6Blwvz4DgCVWzf8usO-xPlR1Ehz2U");
+            BotClient = new TelegramBotClient(System.IO.File.ReadAllText("tokenBot.txt"));
+            Console.WriteLine(BotClient);
             NewsAPI.SearchNews();
             Timer.TimerNews();
             BotClient.StartReceiving(Update, Error);
@@ -20,33 +23,32 @@ namespace Telegram_Bot
         }
         async static Task Update(ITelegramBotClient BotClient, Update update, CancellationToken Token)
         {
-            Messages = update.Message;
+            var Messages = update.Message;
             if (Messages != null)
             {
                switch (Messages.Text)
                {
                 case "/start":
-                    User.users.Add(new User() { id = Messages.Chat.Id });
-                    SendMessage.Greetings();
-                    SendMessage.InformationOutput();             
+                    Storage.users.Add(new User() { id = Messages.Chat.Id });
+                    SendMessage.Greetings(Messages.Chat.Id);
+                    SendMessage.InformationOutput(Messages.Chat.Id, Messages.Chat.FirstName, Messages.Text);             
                         break;
                 case "Подписаться на новости.":
-                    SendMessage.InformationOutput();
-                    SendMessage.SubscribeNews();
+                    SendMessage.InformationOutput(Messages.Chat.Id, Messages.Chat.FirstName, Messages.Text);
+                    SendMessage.SubscribeNews(Messages.Chat.Id);
                         break;
                 case "Нет, спасибо.":
-                    SendMessage.StopWork();
-                    SendMessage.InformationOutput();
+                    SendMessage.StopWork(Messages.Chat.Id);
+                    SendMessage.InformationOutput(Messages.Chat.Id, Messages.Chat.FirstName, Messages.Text);
                     Console.WriteLine();
                         break;
                 case "Получить новость.":
-                    SendMessage.RandomNews();
-                        Console.WriteLine(News.textNews[6], News.textNews[5]);
+                    SendMessage.RandomNews(Messages.Chat.Id);
                         break;
                 case "Остановить бота.":
-                    User.users.Remove(User.users.Find(User => User.id == Messages.Chat.Id));
-                    SendMessage.StopWork();
-                    SendMessage.InformationOutput();
+                    Storage.users.Remove(Storage.users.Find(User => User.id == Messages.Chat.Id));
+                    SendMessage.StopWork(Messages.Chat.Id);
+                    SendMessage.InformationOutput(Messages.Chat.Id, Messages.Chat.FirstName, Messages.Text);
                     Console.WriteLine();
                         break;
                }

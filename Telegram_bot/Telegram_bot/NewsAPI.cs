@@ -2,26 +2,33 @@
 using NewsAPI.Models;
 using NewsAPI.Constants;
 using System;
+using Telegrambot;
 
-namespace Telegram_Bot
+namespace TelegramBot
 {
     class NewsAPI
     {
         public static void SearchNews()
         {
-            var newsApiClient = new NewsApiClient("3f3d1b21c67d428789637f10eca4787d");
+            var newsApiClient = new NewsApiClient(System.IO.File.ReadAllText("tokenAPI.txt"));
             var articlesResponse = newsApiClient.GetEverything(new EverythingRequest
             {
                 Q = "business",
                 SortBy = SortBys.Popularity,
                 Language = Languages.RU,
-                From = new DateTime(2023, 3, 28)
+                From = DateTime.Now.AddDays(-15)
             });
             if (articlesResponse.Status == Statuses.Ok)
             {
                 Console.WriteLine(articlesResponse.TotalResults);
                 foreach (var article in articlesResponse.Articles)
                 {
+                    Storage.news.Add(new News() 
+                    { 
+                        title = article.Title + "\n", 
+                        text = article.Description + "\n", 
+                        url = article.Url, 
+                    });
                     News.textNews.Add(article.Title + "\n" + article.Description + "\n" + article.Url);
                 }
             }

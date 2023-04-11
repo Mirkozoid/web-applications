@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Telegram_Bot
+namespace TelegramBot
 {
     public class User
     {
         public long id;
-        public static List<User> users = new();
     }
 }

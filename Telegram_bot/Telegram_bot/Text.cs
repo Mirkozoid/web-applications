@@ -1,4 +1,4 @@
-﻿namespace Telegram_Bot
+﻿namespace TelegramBot
 {
     class Text
     {   
