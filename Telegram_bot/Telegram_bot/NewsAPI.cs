@@ -3,7 +3,7 @@ using NewsAPI.Models;
 using NewsAPI.Constants;
 using System;
 
-namespace Telegram_bot
+namespace Telegram_Bot
 {
     class NewsAPI
     {
@@ -15,18 +15,14 @@ namespace Telegram_bot
                 Q = "business",
                 SortBy = SortBys.Popularity,
                 Language = Languages.RU,
-                From = new DateTime(2023, 3, 20)
+                From = new DateTime(2023, 3, 28)
             });
             if (articlesResponse.Status == Statuses.Ok)
             {
                 Console.WriteLine(articlesResponse.TotalResults);
                 foreach (var article in articlesResponse.Articles)
                 {
-                    Console.WriteLine(article.Title);
-                    Console.WriteLine(article.Author);
-                    Console.WriteLine(article.Description);
-                    Console.WriteLine(article.Url);
-                    News.textNews.Add(article.Title + "\n" + article.Description + "\n" + article.Title + "\n" + article.Url);
+                    News.textNews.Add(article.Title + "\n" + article.Description + "\n" + article.Url);
                 }
             }
         }

@@ -5,7 +5,7 @@ namespace Telegram_Bot
 {
     class Timer
     {
-        public static DateTime TimeToAlarm = DateTime.Now.Date.AddHours(21).AddMinutes(42);
+        public static DateTime TimeToAlarm = DateTime.Now.Date.AddHours(16).AddMinutes(00);
         public static DateTime TimeNow;
         public static System.Timers.Timer timer = new System.Timers.Timer();
         public static void TimerNews()
@@ -15,6 +15,18 @@ namespace Telegram_Bot
             timer.Elapsed += ChekingTime;
             timer.AutoReset = true;
             timer.Enabled = true;
+        }
+        public static void TimerNewsUpdate()
+        {
+            timer.Start();
+            timer.Interval = 600000;
+            timer.Elapsed += CallNewsUpdates;
+            timer.AutoReset = true;
+            timer.Enabled = true;
+        }
+        public static void CallNewsUpdates(object source, ElapsedEventArgs e)
+        {
+            NewsAPI.SearchNews();
         }
         public static void ChekingTime(object source, ElapsedEventArgs e)
         {

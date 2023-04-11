@@ -9,13 +9,11 @@ namespace Telegram_Bot
     class Program 
     {
         public static TelegramBotClient BotClient;
-        public static CancellationToken Token;
         public static Message Messages;
         static void Main(string[] args)
         {
             BotClient = new TelegramBotClient("6104127558:AAF00d6Blwvz4DgCVWzf8usO-xPlR1Ehz2U");
-            CreatLinks.SortLinks();
-            News.RenderNews();
+            NewsAPI.SearchNews();
             Timer.TimerNews();
             BotClient.StartReceiving(Update, Error);
             Console.ReadLine();
