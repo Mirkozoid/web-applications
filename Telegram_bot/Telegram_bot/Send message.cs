@@ -25,15 +25,17 @@ namespace TelegramBot
         }
         public async static void RandomNews(long chatId)
         {
-            await Program.BotClient.SendTextMessageAsync(chatId: chatId, text: News.textNews[RandomIndexNew(Rand.Next(0, 99))], 
+            News text = new News();
+            await Program.BotClient.SendTextMessageAsync(chatId: chatId, text: text.RenderNews(), 
             cancellationToken: new CancellationToken());
         }
-        public async static void NewsEveryDay(string textNews)
+        public async static void NewsEveryDay()
         {
+            News text = new News();
             for (int i = 0; i < Storage.users.Count; i++)
             {
                await Program.BotClient.SendTextMessageAsync(chatId: Convert.ToInt32(Storage.users[i].id), 
-               text: textNews, cancellationToken: new CancellationToken());    
+               text: text.RenderNews(), cancellationToken: new CancellationToken());    
             }
         }
         public static void InformationOutput(long chatId, string firstName, string textMessage)

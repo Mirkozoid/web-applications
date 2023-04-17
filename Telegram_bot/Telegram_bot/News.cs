@@ -17,8 +17,8 @@ namespace TelegramBot
         public string RenderNews()
         {
             int index = RandomIndexNew(Rand.Next(0, 99));
-            SendMessage.NewsEveryDay(Storage.news[index].title + "\n" + Storage.news[index].text + "\n" + Storage.news[index].url);
-            return;
+            string text = Storage.news[index].title + "\n" + Storage.news[index].text + "\n" + Storage.news[index].url;
+            return text;
         }
     }
 }

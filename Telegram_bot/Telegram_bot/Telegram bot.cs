@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
@@ -14,8 +12,7 @@ namespace TelegramBot
         public static TelegramBotClient BotClient;
         static void Main(string[] args)
         {
-            BotClient = new TelegramBotClient(System.IO.File.ReadAllText(@"C:\Users\User\Desktop\Proj\Labs\web-applications\Telegram_bot\tokenBot.txt"));
-            Console.WriteLine(BotClient);
+            BotClient = new TelegramBotClient(ItemJSON.itemJSON.tokenBot);
             NewsAPI.SearchNews();
             Timer.TimerNews();
             BotClient.StartReceiving(Update, Error);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Timers;
+using Telegrambot;
 
 namespace TelegramBot
 {
@@ -33,7 +34,7 @@ namespace TelegramBot
             TimeNow = DateTime.Now;
             if (TimeNow.Hour == TimeToAlarm.Hour && TimeNow.Minute == TimeToAlarm.Minute && TimeNow.Second == TimeToAlarm.Second)
             {
-                News.RenderNews();
+                SendMessage.NewsEveryDay();
             }
         }
     }

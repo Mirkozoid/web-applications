@@ -10,7 +10,7 @@ namespace TelegramBot
     {
         public static void SearchNews()
         {
-            var newsApiClient = new NewsApiClient(System.IO.File.ReadAllText(@"C:\Users\User\Desktop\Proj\Labs\web-applications\Telegram_bot\tokenAPI.txt"));
+            var newsApiClient = new NewsApiClient(ItemJSON.itemJSON.tokenAPI);
             var articlesResponse = newsApiClient.GetEverything(new EverythingRequest
             {
                 Q = "business",
