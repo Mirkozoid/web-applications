@@ -1,0 +1,16 @@
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\bin\Debug\net5.0\LinkedList.exe
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\bin\Debug\net5.0\LinkedList.deps.json
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\bin\Debug\net5.0\LinkedList.runtimeconfig.json
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\bin\Debug\net5.0\LinkedList.runtimeconfig.dev.json
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\bin\Debug\net5.0\LinkedList.dll
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\bin\Debug\net5.0\ref\LinkedList.dll
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\bin\Debug\net5.0\LinkedList.pdb
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\obj\Debug\net5.0\LinkedList.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\obj\Debug\net5.0\LinkedList.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\obj\Debug\net5.0\LinkedList.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\obj\Debug\net5.0\LinkedList.AssemblyInfo.cs
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\obj\Debug\net5.0\LinkedList.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\obj\Debug\net5.0\LinkedList.dll
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\obj\Debug\net5.0\ref\LinkedList.dll
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\obj\Debug\net5.0\LinkedList.pdb
+C:\Users\User\Desktop\Proj\Labs\web-applications\LinkedList\LinkedList\obj\Debug\net5.0\LinkedList.genruntimeconfig.cache
