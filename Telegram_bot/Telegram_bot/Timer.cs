@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Timers;
-using Telegrambot;
 
 namespace TelegramBot
 {

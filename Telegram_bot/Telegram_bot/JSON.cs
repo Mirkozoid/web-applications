@@ -1,7 +1,5 @@
-﻿using NewsAPI;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.IO;
-using Telegram.Bot;
 
 namespace Telegrambot
 {

@@ -20,7 +20,7 @@ namespace TelegramBot
             });
             if (articlesResponse.Status == Statuses.Ok)
             {
-                Console.WriteLine(articlesResponse.TotalResults);
+                //Console.WriteLine(articlesResponse.TotalResults);
                 foreach (var article in articlesResponse.Articles)
                 {
                     Storage.news.Add(new News() 
