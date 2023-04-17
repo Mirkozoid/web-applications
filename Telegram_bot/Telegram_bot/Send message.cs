@@ -8,11 +8,6 @@ namespace TelegramBot
 {
     class SendMessage
     {
-        public static Random Rand = new Random();
-        public static int RandomIndexNew(int Rand)
-        {
-            return Rand;
-        }
         public async static void Greetings(long chatId)
         {
             await Program.BotClient.SendTextMessageAsync(chatId: chatId, Text.GreetingsText, replyMarkup: 
@@ -33,12 +28,12 @@ namespace TelegramBot
             await Program.BotClient.SendTextMessageAsync(chatId: chatId, text: News.textNews[RandomIndexNew(Rand.Next(0, 99))], 
             cancellationToken: new CancellationToken());
         }
-        public async static void NewsEveryDay()
+        public async static void NewsEveryDay(string textNews)
         {
             for (int i = 0; i < Storage.users.Count; i++)
             {
                await Program.BotClient.SendTextMessageAsync(chatId: Convert.ToInt32(Storage.users[i].id), 
-               text: News.textNews[RandomIndexNew(Rand.Next(0, 99))], cancellationToken: new CancellationToken());    
+               text: textNews, cancellationToken: new CancellationToken());    
             }
         }
         public static void InformationOutput(long chatId, string firstName, string textMessage)

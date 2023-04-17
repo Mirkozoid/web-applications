@@ -1,2 +1,0 @@
-/tokenBot.txt
-/tokenAPI.txt

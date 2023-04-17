@@ -33,7 +33,7 @@ namespace TelegramBot
             TimeNow = DateTime.Now;
             if (TimeNow.Hour == TimeToAlarm.Hour && TimeNow.Minute == TimeToAlarm.Minute && TimeNow.Second == TimeToAlarm.Second)
             {
-                SendMessage.NewsEveryDay();
+                News.RenderNews();
             }
         }
     }
