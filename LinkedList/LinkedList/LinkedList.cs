@@ -76,28 +76,31 @@ namespace LinkedList
             }
             if (Head != null)
             {
-              var current = Head;
-              while (current != null)
-              {
-                if (current.Data.Equals(target))
-                {
-                    var item = new Item<T>(data);
-                    item.Next = current.Next;
-                    current.Next = item;
-                    Count++;
-                    return;
-                }
-                else
-                {
-                    current = current.Next;
-                }
-              }
+               var current = Head;
+               while (current != null)
+               {
+                    for (int i = 2; i < Count; i++)
+                    {
+                       if (i.Equals(target))
+                       {
+                          var item = new Item<T>(data);
+                          item.Next = current.Next;
+                          current.Next = item;
+                          Count++;
+                          return;
+                       }
+                       else
+                       {
+                          current = current.Next;
+                       }
+                    }
+               }
             }
-            //else
-            //{
-            //    SetHeadAndTail(target);
-            //    Add(data);
-            //}
+            else
+            {
+                SetHeadAndTail(target);
+                Add(data);
+            }
         }
         public IEnumerator GetEnumerator()
         {

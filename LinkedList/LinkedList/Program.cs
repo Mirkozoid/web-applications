@@ -19,7 +19,7 @@ namespace LinkedList
             {
                Console.Write(item + " ");
             }
-            linkedList.Insert(1, 2);
+            linkedList.Insert(7, 6);
             Console.WriteLine();
             foreach (var item in linkedList)
             {
