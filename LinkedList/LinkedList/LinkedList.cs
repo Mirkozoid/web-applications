@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LinkedList
 {
@@ -101,6 +103,36 @@ namespace LinkedList
                 SetHeadAndTail(target);
                 Add(data);
             }
+        }
+        public void Sort()
+        {
+            var list = new List<T>(this.Cast<T>());
+            list.Sort();
+            var current = Head;
+            foreach (var item in list)
+            {
+                current.Data = item;
+                current = current.Next;
+            }
+        }
+        public void Reverse()
+        {
+            if (Head == null || Head.Next == null)
+            {
+                return;
+            }
+            var previous = Head;
+            var current = Head.Next;
+            previous.Next = null;
+            Tail = previous;
+            while (current != null)
+            {
+                var next = current.Next;
+                current.Next = previous;
+                previous = current;
+                current = next;
+            }
+            Head = previous;
         }
         public IEnumerator GetEnumerator()
         {
