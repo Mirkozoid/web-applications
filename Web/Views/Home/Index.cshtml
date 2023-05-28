@@ -4,32 +4,55 @@
     <title>Главная страница</title>
     <style>
         body {
-            background-image: url('https://cdn.pixabay.com/animation/2022/11/13/12/32/12-32-59-226_512.gif');
+            font-family: mr_CountryhouseG, sans-serif;
+            text-align: center;
+        }
+
+        .register-form, .welcome-text {
+            margin: 50px auto;
+            display: block;
+            width: fit-content;
+            background-color: rgba(205, 133, 63, 0.7);
+            padding: 20px;
+            border-radius: 25px;
+        }
+
+        video#bgvid {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
             background-size: cover;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
             color: white;
-            font-family: Arial, sans-serif;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
 
-        h1 {
-            text-align: center;
-        }
-
-        .register-form {
-            text-align: center;
-            margin-top: 50px;
-        }
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
     </style>
 </head>
 <body>
-    <h1>Добро пожаловать на мой сайт!</h1>
-    <p>Это главная страница моего сайта.</p>
-    @{
-        var message = "Спасибо за посещение!";
-    }
-    <p>@message</p>
+    <video autoplay loop muted id="bgvid">
+        <source src="https://joy1.videvo.net/videvo_files/video/free/2019-11/large_watermarked/190301_1_25_11_preview.mp4" type="video/mp4">
+    </video>
+    <div class="welcome-text">
+        <h1>Добро пожаловать !</h1>
+    </div>
     <div class="register-form">
         <h2>Регистрация</h2>
-        <form action="/register" method="post">
+        <form action="/Account/Register" method="post">
             <label for="username">Имя пользователя:</label><br>
             <input type="text" id="username" name="username"><br><br>
             <label for="email">Email:</label><br>
@@ -38,6 +61,7 @@
             <input type="password" id="password" name="password"><br><br>
             <input type="submit" value="Зарегистрироваться">
         </form>
+
     </div>
 </body>
 </html>

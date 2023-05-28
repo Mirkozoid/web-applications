@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Успешная регистрация</title>
+    <style>
+        body {
+            color: darkred;
+            font-family: mr_CountryhouseG, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .button {
+            background-color: white;
+            color: black;
+            padding: 15px 25px;
+            margin: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease 0s;
+        }
+
+        .button:hover {
+            background-color: darkred;
+            box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+            color: white;
+            transform: translateY(-7px);
+        }
+
+        video#bgvid {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            background-size: cover;
+        }
+        
+        .text-container {
+          display:flex; 
+          justify-content:center; 
+          align-items:center; 
+          flex-direction:column
+        }
+        
+        .text-background {
+          background-color: rgba(245,222,179,0.7); 
+          padding:20px; 
+          border-radius:25px
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop muted id="bgvid">
+        <source src="https://joy1.videvo.net/videvo_files/video/free/2022-01/large_watermarked/220114_01_Drone_4k_017_preview.mp4" type="video/mp4">
+    </video>
+    <div class="text-container">
+      <div class="text-background">
+        <h1>Спасибо за регистрацию!</h1>
+        <p>Вы успешно зарегистрировались на нашем сайте.</p>
+      </div>
+      <div class="button-container">
+          <a href="https://www.chiquita.com" class="button">Бананы</a>
+          <a href="http://fishencyclopedia.info/" class="button">Рыбы</a>
+          <a href="https://www.lionalert.org" class="button">Львы</a>
+          <a href="https://www.burpee.com/flowers/" class="button">Цветы</a>
+      </div>
+    </div>
+</body>
+</html>
