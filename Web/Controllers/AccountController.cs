@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyApp.Controllers
 {
@@ -16,7 +17,12 @@ namespace MyApp.Controllers
             }
 
             // Сохранение информации о новом пользователе в базе данных
-            // ...
+            using (var db = new MyAppContext())
+            {
+                var user = new User { Username = username, Email = email, Password = password };
+                db.Users.Add(user);
+                await db.SaveChangesAsync();
+            }
 
             // Отправка письма подтверждения на указанный email
             // ...
