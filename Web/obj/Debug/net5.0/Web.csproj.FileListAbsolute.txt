@@ -82,7 +82,6 @@ C:\Users\User\Desktop\Proj\Labs\web-applications\Web\obj\Debug\net5.0\Web.pdb
 C:\Users\User\Desktop\Proj\Labs\web-applications\Web\obj\Debug\net5.0\Web.genruntimeconfig.cache
 C:\Users\User\Desktop\Proj\Labs\web-applications\Web\obj\Debug\net5.0\Web.csproj.CopyComplete
 C:\Users\User\Desktop\Proj\Labs\web-applications\Web\obj\Debug\net5.0\Razor\Views\Account\AfterRegister.cshtml.g.cs
-C:\Users\User\Desktop\Proj\Labs\web-applications\Web\bin\Debug\net5.0\url.json
 C:\Users\User\Desktop\Proj\Labs\web-applications\Web\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\User\Desktop\Proj\Labs\web-applications\Web\bin\Debug\net5.0\EntityFramework.SqlServer.dll
 C:\Users\User\Desktop\Proj\Labs\web-applications\Web\bin\Debug\net5.0\EntityFramework.dll
