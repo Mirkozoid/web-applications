@@ -41,18 +41,67 @@
             input[type="submit"]:hover {
                 background-color: #45a049;
             }
+
+        /* Новые стили */
+
+        .register-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: none;
+            padding-left: 10px
+        }
+
+        input[type="submit"] {
+            background-color: #87CEEB;
+            transition: .3s
+        }
+
+            input[type="submit"]:hover {
+                background-color: #ADD8E6;
+                transform: scale(1.05)
+            }
+
+        ::-webkit-scrollbar {
+            width: 12px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555
+            }
     </style>
 </head>
 <body>
     @{
-        var urlJson = System.IO.File.ReadAllText("url.json");
-        var url = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(urlJson);
-        var firstUrl = url.url[0];
-    }
+            var urlJson = System.IO.File.ReadAllText("url.json");
+            var url = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(urlJson);
+            var firstUrl = url.url[0];
+        }
 
     <video autoplay loop muted id="bgvid">
-        <source src="@firstUrl" type="video/mp4">
-    </video>
+            <source src="@firstUrl" type="video/mp4">
+        </video>
 
     <div class="welcome-text">
         <h1>Добро пожаловать !</h1>
@@ -60,12 +109,12 @@
     <div class="register-form">
         <h2>Регистрация</h2>
         <form action="/Account/Register" method="post">
-            <label for="username">Имя пользователя:</label><br>
-            <input type="text" id="username" name="username"><br><br>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email"><br><br>
-            <label for="password">Пароль:</label><br>
-            <input type="password" id="password" name="password"><br><br>
+            <label for="username">Имя пользователя:</label>
+            <input type="text" id="username" name="username">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password">
             <input type="submit" value="Зарегистрироваться">
         </form>
 
