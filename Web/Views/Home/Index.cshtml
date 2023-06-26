@@ -30,17 +30,39 @@
         }
 
         input[type="submit"] {
-            background-color: #4CAF50;
+            font-size: 20px;
             color: white;
+            background-color: #4CAF50;
             padding: 12px 20px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff0080, 0 0 40px #ff0080, 0 0 50px #ff0080, 0 0 75px #ff0080;
         }
 
             input[type="submit"]:hover {
-                background-color: #45a049;
+                animation: glowing 1300ms infinite;
             }
+
+        keyframes glowing {
+            0%
+
+        {
+            background-color: #4CAF50;
+            box-shadow: 0 0 5px #4CAF50, 0 0 10px #4CAF50, 0 0 15px #4CAF50, 0 0 20px #ff0080, 0 035px #ff0080, 040px #ff0080, 050px #ff0080, 075px #ff0080
+        }
+
+        50% {
+            background-color: #45a049;
+            box-shadow: none
+        }
+
+        100% {
+            background-color: #4CAF50;
+            box-shadow: none
+        }
+
+        }
 
         /* Новые стили */
 
@@ -90,18 +112,38 @@
             ::-webkit-scrollbar-thumb:hover {
                 background: #555
             }
+
+        input[type="text"]:hover,
+        input[type="email"]:hover,
+        input[type="password"]:hover {
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+
+        input[type="submit"]:hover::after {
+            content: 'Зарегистрироваться';
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            right: 0;
+            font-size: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            transform: scaleY(-1);
+        }
     </style>
+    <script src="~/Scripts/three.min.js"></script>
 </head>
 <body>
     @{
-            var urlJson = System.IO.File.ReadAllText("url.json");
-            var url = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(urlJson);
-            var firstUrl = url.url[0];
-        }
+        var urlJson = System.IO.File.ReadAllText("url.json");
+        var url = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(urlJson);
+        var firstUrl = url.url[0];
+    }
 
     <video autoplay loop muted id="bgvid">
-            <source src="@firstUrl" type="video/mp4">
-        </video>
+        <source src="@firstUrl" type="video/mp4">
+    </video>
 
     <div class="welcome-text">
         <h1>Добро пожаловать !</h1>
