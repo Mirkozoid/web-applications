@@ -1,91 +1,99 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Успешная регистрация</title>
     <style>
         body {
-            color: darkred;
-            font-family: Alkalami, sans-serif;
+            background-color: #1c1c1c;
+            color: #bbb;
+            font-family: Arial, sans-serif;
         }
 
-        h1 {
-            text-align: center;
+        .friends-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #bbb;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
 
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 50px;
-        }
-
-        .button {
-            background-color: white;
-            color: black;
-            padding: 15px 25px;
-            margin: 10px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            border-radius: 12px;
-            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease 0s;
-        }
-
-            .button:hover {
-                background-color: darkred;
-                box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-                color: white;
-                transform: translateY(-7px);
-            }
-
-        video#bgvid {
+        .friends-modal {
+            display: none;
             position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -100;
-            background-size: cover;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
         }
 
-        .text-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column
-        }
-
-        .text-background {
-            background-color: rgba(245,222,179,0.7);
+        .friends-modal-content {
+            background-color: #1c1c1c;
+            margin: 15% auto;
             padding: 20px;
-            border-radius: 25px
+            border: 1px solid #888;
+            width: 80%;
         }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #bbb;
+                text-decoration: none;
+                cursor: pointer;
+            }
     </style>
 </head>
 <body>
-    @{
-        var urlJson = System.IO.File.ReadAllText("url.json");
-        var url = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(urlJson);
-        var firstUrl = url.url[1];
-    }
+    <button class="friends-button">Друзья</button>
 
-    <video autoplay loop muted id="bgvid">
-        <source src="@firstUrl" type="video/mp4">
-    </video>
-    <div class="text-container">
-        <div class="text-background">
-            <h1>Спасибо за регистрацию!</h1>
-            <p>Вы успешно зарегистрировались на нашем сайте.</p>
-        </div>
-        <div class="button-container">
-            <a href="https://www.chiquita.com" class="button">Бананы</a>
-            <a href="http://fishencyclopedia.info/" class="button">Рыбы</a>
-            <a href="https://www.lionalert.org" class="button">Львы</a>
-            <a href="https://www.burpee.com/flowers/" class="button">Цветы</a>
+    <div id="friendsModal" class="friends-modal">
+        <div class="friends-modal-content">
+            <span class="close">×</span>
+
+            <h3>Найти друзей</h3>
+            <input type="text" placeholder="Введите имя пользователя">
+            <button>Поиск</button>
+
+            <h3>Список друзей</h3>
+            <ul id="friendsList">
+                <li>Alice</li>
+                <li>Bob</li>
+                <li>Charlie</li>
+            </ul>
+
         </div>
     </div>
+
+    <script type="text/javascript">
+        var modal = document.getElementById("friendsModal");
+        var btn = document.querySelector(".friends-button");
+        var span = document.querySelector(".close");
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
